@@ -111,6 +111,11 @@ export default function ProductDetails (){
                     </div>
                     
                 </div>
+                <p className= {styles.fullSpecs}>Other Notes</p><br/>
+                <p className= {styles.desc}>
+                    Lorem Ipsum Dolor sit amet consecteur adipiscing elitLorem Ipsum Dolor 
+                    sit amet consecteur adipiscing elitLorem Ipsum Dolor sit amet consecteur adipiscing elit
+                </p>
             </div>
         </div>
 
