@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.introduction, .whyus {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding-top: 3rem;
+}
+
+.introduction span{
+    font-size: 10px;
+    margin-bottom: -100px;
+    font-weight: 500;
+}
+
+.introduction, .whyus h3{
+    margin-top: -10px;
+    font-size: 14px;
+}
+
+.introduction,.whyus p{
+    font-size: 12px;
+    margin-top: -10px;
+    line-height: 25px;
+}
+
+.imageWrapper{
+    position: relative;
+    width: 50%;
+    aspect-ratio: 1/1;
+    margin-left: 25%;
+    margin-top: 3rem;
+}
+
+.imageSection {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5%;
+    row-gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.imageSectionWrapper{
+    position: relative;
+    width: 43%;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    border: 1px solid red;
+}

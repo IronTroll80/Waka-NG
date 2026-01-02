@@ -1,0 +1,144 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.images {
+    width: 75%;
+    margin-top: 1.5rem;
+}
+.mainImage, .subImage {
+    position: relative;
+    aspect-ratio: 1/1;
+    margin-bottom: 1rem;
+}
+
+.mainImage {
+    width: 100%;
+}
+
+.imageGroup {
+    display: flex;
+    width: 100%;
+    gap: 3%;
+    margin-top: 1rem;
+}
+
+.subImage{
+    width: 22%;
+    aspect-ratio: 1/1;
+}
+
+.body{
+    display: flex;
+    flex-direction: column;
+    gap:0px;
+    width: 70%;
+}
+
+.category{
+    color: #979797;
+    font-size: 12px;
+    margin-bottom: -15px;
+}
+
+.title{
+    font-size: 16px;
+    margin-bottom: -18px;
+    font-weight: 500;
+}
+
+.price{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.desc{
+    margin-top: -15px;
+    line-height: 25px;
+}
+
+.misc{
+    margin-top: -25px;
+    line-height: 25px;
+    color: #9b9b9b;
+}
+
+.buttonGroup{
+    display: flex;
+    gap: 3%;
+}
+
+.toCart{
+    background-color: var(--accent-color);
+    border: none;
+    padding: .8rem;
+    border-radius: 3px;
+    font-size: 12px;
+    width: 60%;
+    color: #1c271c;
+    display: flex;
+    gap: 5%;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp{
+    width: 40px;
+    aspect-ratio: 1/1;
+    position: relative;
+    padding: 0;
+}
+
+.divider{
+    width: 100%;
+    border-color: #1c217c79;
+}
+
+.specs{
+    font-weight: 600;
+}
+
+.specifications {
+    display: flex;
+    gap: 5%;
+}
+
+.fullSpecs{
+    font-weight: 600;
+    margin-top: 2rem;
+}
+
+.fullSpecsGroup{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15%;
+    row-gap: 1rem;
+}
+
+.fullSpecsGroup .item{
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: fit-content;
+}
+
+.fullSpecsGroup .item div{
+    display: flex;
+    align-items: center;
+    gap: 5%;
+}
+
+.fullSpecsGroup .item p{
+
+    white-space: nowrap;
+
+}
+
+.specName{
+    width: 100%;
+    font-weight: 600;
+    margin-top: -5px;
+}
