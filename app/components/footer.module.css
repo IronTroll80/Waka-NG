@@ -1,0 +1,48 @@
+.container{
+    width: 100%;
+    background-color: #212124;
+    height: fit-content;
+    display: flex;
+    color: white;
+    flex-direction: column;
+    padding: 4rem;
+    gap: 2rem;
+    font-size: 12px;
+}
+
+.newsletter input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #d9d9d9;
+    padding-bottom: .7rem;
+    width: 70%;
+}
+
+.newsletter input::placeholder{
+    font-size: 12px;
+}
+
+.newsletter :-ms-input-placeholder{
+    color: #d9d9d9;
+}
+
+.newsletter button{
+    padding: 1rem;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    width: 70%;
+    margin-top: 1rem;
+    font-size: 12px;
+}
+
+@media (min-width: 1024px) {
+    .container{
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .newsletter input{
+        width: 100%;
+    }
+}

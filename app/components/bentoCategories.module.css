@@ -1,0 +1,109 @@
+.container{
+    height: 400px;
+    width: 60%;
+    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 20px;
+    grid-auto-flow: dense;
+}
+
+.item{
+    background-image: url('/phones.jpg');
+    width: 20vw;
+    height: 20vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.phones{
+    background-image: url('/phones.jpg');
+    width: 20vw;
+    height: 19.5vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.headphones{
+    background-image: url('/headphones.jpg');
+    width: 20vw;
+    height: 14.5vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.accessories{
+    background-image: url('/accessories.jpg');
+    width: 20vw;
+    height: 17vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+}
+
+
+.music{
+    background-image: url('/music.jpg');
+    width: 20vw;
+    height: 15vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.laptops{
+    background-image: url('/laptops.jpg');
+    width: 20vw;
+    height: 20vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+    margin-top: -5vw;
+}
+
+.tablets{
+    background-image: url('/tablets.jpg');
+    width: 20vw;
+    height: 17.5vw;
+    min-width: 250px;
+    min-height: 250px;
+    border-radius: 20px;
+    margin-left: 1rem;
+    background-size: cover;
+    background-position: 50%;
+    margin-top: -2.5vw;
+}
+
+
+.overlay{
+    background-color: rgba(0, 0, 0, 0.705);
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 20px;
+}
