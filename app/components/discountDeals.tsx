@@ -33,7 +33,7 @@ export default function DiscountDeals(){
                 </div>
             </div>
             <div className= {styles.discountImage}>
-                <Image src={'/longPromo.png'} alt='promo' fill/>
+                <Image src={'/smallPromo.png'} alt='promo' fill/>
             </div>
             <div className= {styles.imageNav}>
                 <div className= {styles.imageCircle}></div>

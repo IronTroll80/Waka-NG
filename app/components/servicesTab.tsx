@@ -15,7 +15,7 @@ export default function ServicesTab (){
                     </div>
                 </div>
             </div>
-            <div className= {`${styles.service} ${styles.sales}`}>
+            <div className= {`${styles.service} ${styles.quality}`}>
                 <div className= {styles.overlay}>
                     <div className= {styles.serviceInfo}>
                         <Image src = {'/tested.svg'} alt = 'icon' width = {40} height = {40}/>
@@ -24,7 +24,7 @@ export default function ServicesTab (){
                     </div>
                 </div>
             </div>
-            <div className= {`${styles.service} ${styles.sales}`}>
+            <div className= {`${styles.service} ${styles.delivery}`}>
                 <div className= {styles.overlay}>
                     <div className= {styles.serviceInfo}>
                         <Image src = {'/quality.svg'} alt = 'icon' width = {40} height = {40}/>
@@ -33,7 +33,7 @@ export default function ServicesTab (){
                     </div>
                 </div>
             </div>
-            <div className= {`${styles.longService} ${styles.sales}`}>
+            <div className= {`${styles.longService} ${styles.pos}`}>
                 <div className= {styles.overlay}>
                     <div className= {styles.serviceInfo}>
                         <Image src = {'/quality.svg'} alt = 'icon' width = {40} height = {40}/>
@@ -42,7 +42,7 @@ export default function ServicesTab (){
                     </div>
                 </div>
             </div>
-            <div className= {`${styles.longService} ${styles.sales}`}>
+            <div className= {`${styles.longService} ${styles.speaker}`}>
                 <div className= {styles.overlay}>
                     <div className= {styles.serviceInfo}>
                         <Image src = {'/quality.svg'} alt = 'icon' width = {40} height = {40}/>
