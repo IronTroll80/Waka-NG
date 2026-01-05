@@ -5,6 +5,25 @@
     flex-direction: column;
 }
 
+.topBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bottomBody{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.fullSpecsGroup{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+}
+
 .images {
     width: 75%;
     margin-top: 1.5rem;
@@ -83,6 +102,7 @@
     gap: 5%;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .whatsapp{
@@ -90,6 +110,7 @@
     aspect-ratio: 1/1;
     position: relative;
     padding: 0;
+    cursor: pointer;
 }
 
 .divider{
@@ -141,4 +162,101 @@
     width: 100%;
     font-weight: 600;
     margin-top: -5px;
+}
+
+.notes{
+        font-size: 12px;
+        margin-top: -20px;
+        width: 80%;
+    }
+
+@media (min-width: 768px) {
+    .container{
+        align-items: center;
+        justify-content: center;
+    }
+
+    .topBody{
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 2rem;
+        width: 70%;
+        gap: 10%;
+    }
+
+    .buttonGroup{
+        gap: 10px;
+    }
+
+    .toCart{
+        width: 30%;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .body{
+        margin-top: 4rem;
+        width: 50%;
+    }
+
+    .category{
+    font-size: 14px;
+    }
+
+    .title{
+        font-size: 18px;
+        margin-bottom: -18px;
+        font-weight: 500;
+    }
+
+    .price{
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    .desc{
+        font-size: 16px;
+        margin-top: 0px;
+        font-weight: 400;
+    }
+
+
+    .notes{
+        font-size: 14px;
+        margin-top: -20px;
+    }
+
+    .misc{
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .topBody hr{
+        margin-top: 20px;
+    }
+
+    .images{
+        width: 27%;
+    }
+
+    
+    .specs{
+        font-size: 16px;
+    }
+
+    .fullSpecsGroup .item div{
+        gap: 2%;
+    }
+
+    .fullSpecs{
+        font-size: 16px;
+        width: 80%;
+    }
+
+
+    .bottomBody{
+        width: 70%;
+    }
+
+
 }

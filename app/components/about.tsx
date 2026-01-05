@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styles from './productDetails.module.css'
+import styles from './about.module.css'
 
 export default function About (){
     return (
@@ -7,7 +7,7 @@ export default function About (){
         
         <div className= {styles.container}>
             <div className= {styles.introduction}>
-                <div>
+                <div className={styles.introContent}>
                     <span>Introduction</span>
                     <h3>About Waka NG</h3>
                     <p> Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
@@ -15,17 +15,19 @@ export default function About (){
                         Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
                         elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing elit
                     </p>
+                </div>
                     <div className= {styles.imageWrapper}>
                         <Image src = {'/logo_blue.svg'} alt = 'logo_blue' fill /> 
                     </div>
-                </div>
             </div>
             <div className= {styles.whyus}>
-                <h3>Why Choose Us</h3>
-                <p>     
-                        Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
-                        elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet con
-                </p>
+                <div className= {styles.textContent}>
+                    <h3>Why Choose Us</h3>
+                    <p>     
+                            Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
+                            elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet con
+                    </p>
+                </div>
                 <div className= {styles.imageSection}>
                     <div className= {styles.imageSectionWrapper}>
                         <Image src={'/hero-background.jpg'} alt='whyus' fill/>
@@ -42,11 +44,13 @@ export default function About (){
                 </div>
             </div>
             <div className= {styles.whyus}>
-                <h3>What We Sell</h3>
-                <p>     
-                        Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
-                        elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet con
-                </p>
+                <div>
+                    <h3>What We Sell</h3>
+                    <p>     
+                            Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
+                            elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet con
+                    </p>
+                </div>
             </div>
         </div>
 

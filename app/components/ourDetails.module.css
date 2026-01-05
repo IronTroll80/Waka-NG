@@ -1,0 +1,28 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4%;
+    row-gap: 1rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.detail{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #bdc1cf;
+    border-radius: 10px;
+    color: #1c274c;
+    font-weight: 400;
+    font-size: 10px;
+}
+
+.detail p{
+    display: flex;
+    align-items: center;
+    gap: 2%
+}

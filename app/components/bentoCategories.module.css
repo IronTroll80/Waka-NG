@@ -1,109 +1,39 @@
-.container{
-    height: 400px;
-    width: 60%;
-    align-content: center;
+.container {
+    width: 80%;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    row-gap: 20px;
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    gap: 20px;
     grid-auto-flow: dense;
+    padding: 2rem 0;
+    
 }
 
-.item{
-    background-image: url('/phones.jpg');
-    width: 20vw;
-    height: 20vw;
-    min-width: 250px;
-    min-height: 250px;
+
+.card {
     border-radius: 20px;
-    margin-left: 1rem;
     background-size: cover;
-    background-position: 50%;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.phones{
-    background-image: url('/phones.jpg');
-    width: 20vw;
-    height: 19.5vw;
-    min-width: 250px;
-    min-height: 250px;
-    border-radius: 20px;
-    margin-left: 1rem;
-    background-size: cover;
-    background-position: 50%;
-}
+.phones { aspect-ratio: 20 / 19.5; background-image: url('/phones.jpg'); }
+.headphones { aspect-ratio: 20 / 14.5; background-image: url('/headphones.jpg'); }
+.accessories { aspect-ratio: 20 / 17; background-image: url('/accessories.jpg'); }
+.music { aspect-ratio: 20 / 15; background-image: url('/music.jpg'); }
+.laptops { aspect-ratio: 1 / 1; background-image: url('/laptops.jpg'); grid-row: span 2; }
+.tablets { aspect-ratio: 20 / 17.5; background-image: url('/tablets.jpg'); }
 
-.headphones{
-    background-image: url('/headphones.jpg');
-    width: 20vw;
-    height: 14.5vw;
-    min-width: 250px;
-    min-height: 250px;
-    border-radius: 20px;
-    margin-left: 1rem;
-    background-size: cover;
-    background-position: 50%;
-}
-
-.accessories{
-    background-image: url('/accessories.jpg');
-    width: 20vw;
-    height: 17vw;
-    min-width: 250px;
-    min-height: 250px;
-    border-radius: 20px;
-    margin-left: 1rem;
-    background-size: cover;
-    background-position: 50%;
-}
-
-
-.music{
-    background-image: url('/music.jpg');
-    width: 20vw;
-    height: 15vw;
-    min-width: 250px;
-    min-height: 250px;
-    border-radius: 20px;
-    margin-left: 1rem;
-    background-size: cover;
-    background-position: 50%;
-}
-
-.laptops{
-    background-image: url('/laptops.jpg');
-    width: 20vw;
-    height: 20vw;
-    min-width: 250px;
-    min-height: 250px;
-    border-radius: 20px;
-    margin-left: 1rem;
-    background-size: cover;
-    background-position: 50%;
-    margin-top: -5vw;
-}
-
-.tablets{
-    background-image: url('/tablets.jpg');
-    width: 20vw;
-    height: 17.5vw;
-    min-width: 250px;
-    min-height: 250px;
-    border-radius: 20px;
-    margin-left: 1rem;
-    background-size: cover;
-    background-position: 50%;
-    margin-top: -2.5vw;
-}
-
-
-.overlay{
-    background-color: rgba(0, 0, 0, 0.705);
-    width: 100%;
-    height: 100%;
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
     font-size: 20px;
 }
+
+

@@ -1,0 +1,53 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.timer{
+    display: flex;
+    gap: 20%;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeItem div{
+    padding-left: .6rem;
+    padding-right: .6rem;
+    padding-top: .4rem;
+    padding-bottom: .4rem;
+    background-color: #bdc1cf;
+    width: fit-content;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.discountImage{
+    width: 80%;
+    aspect-ratio: 38.3/10;
+    position: relative;
+}
+
+.imageNav{
+    display: flex;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    gap: 10%;
+}
+
+.imageCircle{
+    width: 15px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    color: #d9d9d9;
+    background-color: #d9d9d9;
+}

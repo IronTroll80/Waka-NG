@@ -1,0 +1,13 @@
+
+.container{
+    position: relative;
+    width: 200%;
+    aspect-ratio: 10/1;
+    justify-self: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+    .container{width: 80%;}
+}

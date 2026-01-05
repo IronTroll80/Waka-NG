@@ -1,0 +1,67 @@
+.container{
+    display: flex;
+    gap: 3%;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+.service{
+    width: 24%;
+    aspect-ratio: 33/25;
+    border-radius: 10px;
+    background-position: 50%;
+    background-size: cover;
+    margin-top: 2rem;
+    position: relative;
+    border-radius: 20px;
+}
+
+.longService{
+    width: 37.5%;
+    aspect-ratio: 21/10;
+    border-radius: 10px;
+    background-position: 50%;
+    background-size: cover;
+    margin-top: 2rem;
+    position: relative;
+    border-radius: 20px;
+}
+
+
+.sales{
+    background-image: url('/bluePhone.jpg');
+}
+
+.quality{
+
+}
+
+.overlay{
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.479);
+    border-radius: 20px;
+}
+
+.serviceInfo{
+    color: white;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.serviceInfo h3{
+    font-size: 24px;
+    margin-bottom: 0px;
+}
+
+.serviceInfo p{
+    font-size: 16px;
+    color: #d9d9d9;
+    margin-top: 5px;
+}

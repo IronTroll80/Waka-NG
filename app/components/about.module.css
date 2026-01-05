@@ -50,5 +50,62 @@
     width: 43%;
     aspect-ratio: 1/1;
     border-radius: 20px;
-    border: 1px solid red;
+}
+
+@media (min-width: 768px) {
+    .introduction{
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .introduction span{
+        font-size: 12px;
+        margin-bottom: -400px;
+        font-weight: 500;
+    }
+
+    .introduction, .whyus h3{
+        margin-top: -10px;
+        font-size: 18px;
+    }
+
+    .introduction,.whyus p{
+        font-size: 16px;
+        margin-top: -10px;
+        line-height: 40px;
+    }
+
+
+    .introContent{
+        width: 50%;
+    }
+
+    .imageWrapper{
+        width: 20%;
+        margin-left: 10%;
+    }
+
+    .whyus{
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .textContent{
+        width: 32%;
+    }
+
+    .imageSection{
+        width:34%;
+        margin-left: 20%;
+    }
+
+    .imageSectionWrapper{
+        position: relative;
+        width: 40%;
+        aspect-ratio: 1/1;
+        border-radius: 20px;
+    }
 }

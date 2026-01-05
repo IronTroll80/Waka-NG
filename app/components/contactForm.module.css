@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.container input, .container textarea{
+    width: 80%;
+    background-color: #bdc1cf;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    color: #1c274c;
+}
+
+.container input::placeholder, 
+.container textarea::placeholder{
+    color: #1c274c98;
+}
+
+.submit{
+    width: 90%;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: var(--main-color);
+    color: white;
+}

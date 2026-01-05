@@ -20,6 +20,7 @@ export default function ProductCard (){
             </div>
 
             <button className= {styles.button}>Add To Cart</button>
+            <div className= {styles.hotTag}>HOT</div>
         </div>
 
         </>
