@@ -26,3 +26,14 @@
     align-items: center;
     gap: 2%
 }
+
+@media (min-width: 768px) {
+    .container{
+        width: 60%;
+    }
+
+    .detail{
+        font-size: 14px;
+        width: 30%;
+    }
+}

@@ -28,3 +28,18 @@
     background-color: var(--main-color);
     color: white;
 }
+
+@media (min-width: 768px) {
+    .container{
+        width: 30%;
+    }
+
+    .container input, .container textarea{
+        padding: 1.3rem;
+    }
+
+    .submit{
+        width: 85%;
+        padding: 1.3rem;
+    }
+}

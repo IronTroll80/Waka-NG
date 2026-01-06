@@ -125,3 +125,38 @@
 .inputContainer button:hover{
     background-color: #1c1277;
 }
+
+@media (min-width: 768px) {
+     .container{
+        aspect-ratio: 19/5;
+    }
+
+    .container h3{
+        color: white;
+        font-size: 48px;
+        margin-bottom: 0px;
+    }
+
+    .container p{
+        font-size: 16px;
+        color: white;
+        margin-top: 0px;
+    }
+
+    .inputContainer{
+    width: 25%;
+    height: 60px;
+}
+
+    .inputContainer input{
+        width: 70%;
+        font-size: 14px;
+        border: none;
+    }
+
+    .inputContainer button{
+        font-size: 14px;
+    }
+
+
+}

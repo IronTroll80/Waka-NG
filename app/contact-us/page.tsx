@@ -5,6 +5,7 @@ import HeroMarket from "../components/heroMarket";
 import Newsletter from "../components/newsletter";
 import OurDetails from "../components/ourDetails";
 import TopPromo from "../components/topPromo";
+import styles from './contactUs.module.css'
 
 export default function ContactUs (){
     return(
@@ -12,8 +13,10 @@ export default function ContactUs (){
         <TopPromo/>
         <Header/>
         <HeroMarket/>
+        <div className= {styles.container}>
         <OurDetails/>
         <ContactForm/>
+        </div>
         <Newsletter/>
         <Footer/>
         </>

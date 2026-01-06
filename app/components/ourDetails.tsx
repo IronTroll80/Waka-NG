@@ -1,4 +1,3 @@
-import { FaPhoneAlt } from 'react-icons/fa'
 import styles from './ourDetails.module.css'
 import { MdSmartphone } from 'react-icons/md'
 import { BiEnvelope, BiLocationPlus, BiLogoWhatsapp } from 'react-icons/bi'
