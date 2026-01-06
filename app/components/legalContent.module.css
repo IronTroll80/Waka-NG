@@ -1,0 +1,46 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.topButtons{
+    display: flex;
+    gap: 3%;
+    width: 80%;
+}
+
+.topButtons button{
+    width: fit-content;
+    padding: .8rem;
+    border: none;
+    font-size: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.inactive{ 
+    background-color: #bdc1cf;
+    color: #1c274c;
+}
+
+.active{
+    background-color: var(--main-color);
+    color: white;
+}
+
+.heading{
+    width: 80%;
+    text-align: left;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.paragraph{
+    line-height: 30px;
+    font-size: 12px;
+    width: 80%;
+    margin-bottom: 2rem;
+}
