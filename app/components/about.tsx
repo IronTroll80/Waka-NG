@@ -48,7 +48,7 @@ export default function About (){
                     <h3>What We Sell</h3>
                     <p>     
                             Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
-                            elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet con
+                            elitLorem Ipsum dolor sit amet consecteur adipiscing elit Lorem Ipsum dolor sit amet con
                     </p>
                 </div>
             </div>
