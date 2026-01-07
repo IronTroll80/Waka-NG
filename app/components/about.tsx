@@ -8,7 +8,7 @@ export default function About (){
         <div className= {styles.container}>
             <div className= {styles.introduction}>
                 <div className={styles.introContent}>
-                    <span>Introduction</span>
+                    {/* <span>Introduction</span> */}
                     <h3>About Waka NG</h3>
                     <p> Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
                         elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing elitLorem 
@@ -43,11 +43,15 @@ export default function About (){
                     </div>
                 </div>
             </div>
-            <div className= {styles.whyus}>
+            <div className= {styles.wesell}>
                 <div>
                     <h3>What We Sell</h3>
                     <p>     
                             Lorem Ipsum dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
+                            elitLorem Ipsum dolor sit amet consecteur adipiscing elit Lorem Ipsum dolor sit amet conLorem Ipsum 
+                            dolor sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
+                            elitLorem Ipsum dolor sit amet consecteur adipiscing elit Lorem Ipsum dolor sit amet conLorem Ipsum dolor
+                             sit amet consecteur adipiscing elitLorem Ipsum dolor sit amet consecteur adipiscing 
                             elitLorem Ipsum dolor sit amet consecteur adipiscing elit Lorem Ipsum dolor sit amet con
                     </p>
                 </div>

@@ -12,7 +12,7 @@ export default function Marketplace(){
         <>
         <TopPromo/>
         <Header/>
-        <HeroMarket/>
+        <HeroMarket page='Marketplace'/>
         <Shop/>
         <Newsletter/>
         <Footer/>

@@ -1,12 +1,12 @@
 'use client'
 
-import { FaFilter } from 'react-icons/fa'
 import styles from './shop.module.css'
 import Image from 'next/image'
 import ProductCard from './productCard'
 import { BsCaretDown } from 'react-icons/bs'
 import { useState } from 'react'
 import { FaX } from 'react-icons/fa6'
+
 
 export default function Shop (){
 
@@ -135,17 +135,19 @@ export default function Shop (){
                     <button className= {styles.saveButton}>Save Changes</button>
                 </div>
                 <div className= {styles.productContainer}>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
-                    <ProductCard/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/alienware4.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/alienware4.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop2.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop4.jpg'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/alienware4.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop2.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop4.jpg'/>
                 </div>
+                <p>Load More</p>
             </div>
         </div>
         {showMenu &&

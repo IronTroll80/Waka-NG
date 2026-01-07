@@ -27,6 +27,7 @@
 
 .productContainer{
     width: 100%;
+    overflow: none;
     display: flex;
     flex-wrap: wrap;
     row-gap: 3rem;
@@ -226,8 +227,8 @@
 
     .productContainer{
         justify-content: flex-start;
-        row-gap: 4rem;
-        column-gap: 1%;
+        row-gap: 7rem;
+        column-gap: 2%;
     }
 
     .desktopMenu{

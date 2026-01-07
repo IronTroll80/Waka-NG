@@ -1,11 +1,45 @@
-.container{
+.container {
     display: flex;
-    gap: 1%;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-    width: fit-content;
-    flex: 0 0 auto;
-    width: 200%;
-    overflow: hidden;
+    gap: 1rem;
+    padding: 1rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    flex: 0 0 70%;
+    scroll-snap-align: start;
+    scroll-behavior: smooth;
+}
+
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    scrollbar-width: none;
+}
+
+.container > * {
+    scroll-snap-align: start;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+    .container {
+        padding-left: 10%;
+        padding-right: 10%;
+        flex-wrap: wrap;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        justify-content: flex-start;
+    }
+
+    .container > * {
+        flex: 0 0 calc(33.333% - 1rem);
+    }
+}
+
+/* Desktop — 5 per row */
+@media (min-width: 1200px) {
+    .container > * {
+        flex: 0 0 calc(20% - 1rem);
+    }
 }

@@ -5,25 +5,21 @@
     justify-content: center;
 }
 
-.introduction, .whyus {
+.introduction, .whyus, .wesell {
     display: flex;
     flex-direction: column;
     width: 80%;
     padding-top: 3rem;
 }
 
-.introduction span{
-    font-size: 10px;
-    margin-bottom: -100px;
-    font-weight: 500;
-}
 
-.introduction, .whyus h3{
+
+.introduction, .whyus, .wesell h3{
     margin-top: -10px;
     font-size: 14px;
 }
 
-.introduction,.whyus p{
+.introduction,.whyus, .wesell.s p{
     font-size: 12px;
     margin-top: -10px;
     line-height: 25px;
@@ -53,25 +49,24 @@
 }
 
 @media (min-width: 768px) {
-    .introduction{
+    .introduction, .whyus, .wesell{
         flex-direction: row;
         align-items: center;
-        justify-content: center;
-
+        justify-content: space-between;
     }
 
     .introduction span{
         font-size: 12px;
-        margin-bottom: -400px;
+        margin-bottom: 0px;
         font-weight: 500;
     }
 
-    .introduction, .whyus h3{
+    .introduction, .whyus, .wesell h3{
         margin-top: -10px;
         font-size: 18px;
     }
 
-    .introduction,.whyus p{
+    .introduction,.whyus, .wesell p{
         font-size: 16px;
         margin-top: -10px;
         line-height: 40px;
@@ -80,11 +75,13 @@
 
     .introContent{
         width: 50%;
+        order: 1;
     }
 
     .imageWrapper{
         width: 20%;
         margin-left: 10%;
+        order: 0;
     }
 
     .whyus{
@@ -108,4 +105,9 @@
         aspect-ratio: 1/1;
         border-radius: 20px;
     }
+
+    .wesell {
+        width: 70%;
+    }
+
 }

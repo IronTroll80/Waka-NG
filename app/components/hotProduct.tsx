@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import styles from './productCard.module.css'
+import styles from './hotProduct.module.css'
 import { MdShoppingCartCheckout } from 'react-icons/md'
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
     category: string;
 }
 
-export default function ProductCard ({image, hot, title, price, category}: Props){
+export default function HotProduct ({image, hot, title, price, category}: Props){
     return(
         <>
         

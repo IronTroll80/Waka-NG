@@ -13,7 +13,7 @@ export default function Product(){
         
             <TopPromo/>
             <Header/>
-            <HeroMarket/>
+            <HeroMarket page='About Us'/>
             <About/>
             <Brands/>
             <OurDetails/>

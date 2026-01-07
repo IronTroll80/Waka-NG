@@ -17,12 +17,12 @@ export default function BentoCategories (){
                 <div className={styles.overlay}><h3>ACCESSORIES</h3></div>
             </div>
 
-            <div className={`${styles.card} ${styles.music}`}>
-                <div className={styles.overlay}><h3>MUSIC EQUIPMENT</h3></div>
+             <div className={`${styles.card} ${styles.laptops}`}>
+                <div className={styles.overlay}><h3>LAPTOPS</h3></div>
             </div>
 
-            <div className={`${styles.card} ${styles.laptops}`}>
-                <div className={styles.overlay}><h3>LAPTOPS</h3></div>
+            <div className={`${styles.card} ${styles.music}`}>
+                <div className={styles.overlay}><h3>MUSIC EQUIPMENT</h3></div>
             </div>
 
             <div className={`${styles.card} ${styles.tablets}`}>

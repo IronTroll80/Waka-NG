@@ -1,132 +1,90 @@
-/* .container{
+.container {
     display: flex;
-    gap: 3%;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-
-.service{
-    width: 24%;
-    aspect-ratio: 33/25;
-    border-radius: 10px;
-    background-position: 50%;
-    background-size: cover;
-    margin-top: 2rem;
-    position: relative;
-    border-radius: 20px;
-}
-
-.longService{
-    width: 37.5%;
-    aspect-ratio: 21/10;
-    border-radius: 10px;
-    background-position: 50%;
-    background-size: cover;
-    margin-top: 2rem;
-    position: relative;
-    border-radius: 20px;
-}
-
-
-.sales{
-    background-image: url('/bluePhone.jpg');
-}
-
-.quality{
-
-}
-
-.overlay{
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.479);
-    border-radius: 20px;
-}
-
-.serviceInfo{
-    color: white;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-}
-
-.serviceInfo h3{
-    font-size: 24px;
-    margin-bottom: 0px;
-}
-
-.serviceInfo p{
-    font-size: 16px;
-    color: #d9d9d9;
-    margin-top: 5px;
-} */
-
-.container{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
     gap: 1rem;
-    margin-top: 2rem;
+    padding: 1rem 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
 }
 
-.service, .longService{
-    width: 80%;
-    aspect-ratio: 1/1;
+.container::-webkit-scrollbar {
+    display: none;
+}
+
+.container {
+    scrollbar-width: none;
+}
+
+.service, .longService {
+    flex: 0 0 70%; 
+    aspect-ratio: 1 / 1;
     border-radius: 20px;
-    background-position: 50%;
+    background-position: center;
     background-size: cover;
+    scroll-snap-align: start;
 }
 
-.sales{
-    background-image: url('/bluePhone.jpg');
-}
-
-.quality{
-    background-image: url('/quality.png');
-}
-
-.delivery{
-    background-image: url('/elivery.png');
-}
-
-.pos{
-    background-image: url('/pos.png');
-}
-
-.speaker{
-    background-image: url('/speaker.png');
-}
-
-.overlay{
+/* Overlay and info */
+.overlay {
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.479);
+    background-color: rgba(0,0,0,0.48);
     border-radius: 20px;
     height: 100%;
 }
 
-.serviceInfo{
+.serviceInfo {
     color: white;
-    align-items: center;
-    justify-content: center;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
 }
 
-.serviceInfo h3{
+.serviceInfo h3 {
     font-size: 20px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
-.serviceInfo p{
+.serviceInfo p {
     font-size: 10px;
     color: #d9d9d9;
     margin-top: 5px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(150px, auto);
+        gap: 1rem;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .service, .longService {
+        width: 100%;
+    }
+
+    .longService {
+        aspect-ratio: 2 / 1;
+    }
+
+    .longService.pos {
+        grid-column: span 2;
+    }
+
+    .longService.speaker {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }

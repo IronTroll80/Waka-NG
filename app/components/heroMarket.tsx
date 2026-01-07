@@ -1,12 +1,16 @@
 import styles from './heroMarket.module.css'
 
-export default function HeroMarket(){
+interface Props {
+    page: string;
+}
+
+export default function HeroMarket({page}:Props){
     return(
         <>
             <div className= {styles.container}>
                 <div className= {styles.overlay}>
-                    <p>Home / Marketplace</p>
-                    <h3>Marketplace</h3>
+                    <p>Home / {page}</p>
+                    <h3>{page}</h3>
                 </div>
             </div>
         </>

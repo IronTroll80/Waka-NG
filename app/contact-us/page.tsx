@@ -12,7 +12,7 @@ export default function ContactUs (){
         <>
         <TopPromo/>
         <Header/>
-        <HeroMarket/>
+        <HeroMarket page="Contact Us"/>
         <div className= {styles.container}>
         <OurDetails/>
         <ContactForm/>

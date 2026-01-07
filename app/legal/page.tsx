@@ -10,7 +10,7 @@ export default function Legal (){
         
         <TopPromo/>
         <Header/>
-        <HeroMarket/>
+        <HeroMarket page="Legal"/>
         <LegalContent/>
         <Footer/>
         

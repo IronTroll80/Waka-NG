@@ -1,0 +1,105 @@
+
+
+.container {
+    width: auto; 
+    min-width: 70%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.imageWrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    position: relative;
+}
+
+.body {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.category {
+    color: #979797;
+    font-size: 8px;
+}
+
+.title {
+    font-size: 9.6px;
+    margin-bottom: -12px;
+    font-weight: 500;
+}
+
+.price {
+    font-size: 12.8px;
+    font-weight: 600;
+}
+
+.button {
+    width: 90%;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 12px;
+    border: none;
+    padding: .6rem 1rem;
+    border-radius: 5px;
+    transition: .3s;
+    aspect-ratio: 6/1;
+}
+
+.button:hover {
+    background-color: #1a097a;
+    cursor: pointer;
+}
+
+.hotTag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+
+
+.hotTag{
+    font-size: 14px;
+    background-color: white;
+    box-shadow: 0px 0px 4px #979797;
+    padding: .2rem .5rem;
+    border-radius: 5px;
+    color: var(--main-color);
+    font-weight: 600;
+    position: absolute;
+    left: 10px;
+}
+
+.cart{
+    display: none;
+    font-size: 16px;
+    background-color: white;
+    box-shadow: 0px 0px 4px #979797;
+    padding: .4rem;
+    border-radius: 5px;
+    color: var(--main-color);
+    font-weight: 600;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    cursor: pointer;
+}
+
+
+/* Tablet text scale */
+@media (min-width: 768px) {
+    .category { font-size: 12px; }
+    .title { font-size: 16px; }
+    .price { font-size: 18px; }
+    .button { font-size: 16px; }
+}
+
+/* Desktop enhancements */
+@media (min-width: 1024px) {
+    .cart { display: block; }
+}

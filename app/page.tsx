@@ -4,8 +4,6 @@ import TopPromo from "./components/topPromo";
 import Footer from "./components/footer";
 import Hero from "./components/hero";
 import BentoCategories from "./components/bentoCategories";
-import HeroMarket from "./components/heroMarket";
-import ProductCard from "./components/productCard";
 import TitleArea from "./components/titleArea";
 import HomeProductGroup from "./components/homeProductGroup";
 import ServicesTab from "./components/servicesTab";
