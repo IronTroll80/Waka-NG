@@ -11,7 +11,7 @@ export default function Product(){
         
             <TopPromo/>
             <Header/>
-            <HeroMarket/>
+            <HeroMarket page='Marketplace'/>
             <ProductDetails/>
             <Footer/>
 
