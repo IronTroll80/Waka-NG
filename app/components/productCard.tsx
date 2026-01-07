@@ -4,13 +4,12 @@ import { MdShoppingCartCheckout } from 'react-icons/md'
 
 interface Props {
     image: string;
-    hot: boolean;
     title: string;
     price: number;
     category: string;
 }
 
-export default function ProductCard ({image, hot, title, price, category}: Props){
+export default function ProductCard ({image, title, price, category}: Props){
     return(
         <>
         
@@ -30,7 +29,6 @@ export default function ProductCard ({image, hot, title, price, category}: Props
             </div>
 
             <button className= {styles.button}>Purchase</button>
-            {hot && <div className= {styles.hotTag}>HOT</div>}
         </div>
 
         </>

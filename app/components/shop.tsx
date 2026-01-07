@@ -4,8 +4,19 @@ import styles from './shop.module.css'
 import Image from 'next/image'
 import ProductCard from './productCard'
 import { BsCaretDown } from 'react-icons/bs'
-import { useState } from 'react'
 import { FaX } from 'react-icons/fa6'
+import { useEffect, useState } from 'react'
+import { supabase } from '../utils/supabaseClient'
+
+type Product = {
+  id: string
+  name: string
+  description: string
+  price: number
+  image_url: string
+  whatsapp_number: string
+  category_id: string
+}
 
 
 export default function Shop (){
@@ -14,6 +25,30 @@ export default function Shop (){
     const [showList, setShowList] = useState(true)
     const [showOsList, setShowOsList] = useState(true)
     const [showProList, setShowProList] = useState(true)
+    const [products, setProducts] = useState <Product[]>([])
+
+    useEffect(() => {
+    async function fetchProducts() {
+      const { data, error } = await supabase
+        .from('products')
+        .select(`
+          id,
+          name,
+          description,
+          price,
+          image_url,
+          category
+        `)
+
+      if (error) {
+        console.error('Error fetching products:', error)
+      } else {
+        setProducts(data)
+      }
+    }
+
+    fetchProducts()
+    }, [])
 
     return (
         <>
@@ -135,17 +170,9 @@ export default function Shop (){
                     <button className= {styles.saveButton}>Save Changes</button>
                 </div>
                 <div className= {styles.productContainer}>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/alienware4.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/alienware4.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop2.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop4.jpg'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/alienware4.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop2.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
-                    <ProductCard category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop4.jpg'/>
+                    {products.map((product)=>(
+                        <ProductCard image='/testLaptop4.jpg' title= {product.name} key={product.id} price={product.price} category= {'kone'}/>
+                    ))}
                 </div>
                 <p>Load More</p>
             </div>
