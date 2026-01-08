@@ -7,6 +7,7 @@ body {
   margin: 0;
   color: black;
   font-size: 12px;
+  overflow-x: hidden;
 }
 
 :root{
@@ -14,4 +15,8 @@ body {
   --accent-color: #ffb600; 
   --font-inter: 'Inter', sans-serif;
   --font-poppins: 'Poppins', sans-serif;
+}
+
+input:focus{
+  outline: none;
 }

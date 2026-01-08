@@ -7,15 +7,18 @@ import { BsCaretDown } from 'react-icons/bs'
 import { FaX } from 'react-icons/fa6'
 import { useEffect, useState } from 'react'
 import { supabase } from '../utils/supabaseClient'
+import { useSearch } from '../context/searchContext'
 
 type Product = {
   id: string
   name: string
   description: string
   price: number
-  image_url: string
   category: string
+  slug: string
 }
+
+
 
 
 export default function Shop (){
@@ -25,29 +28,25 @@ export default function Shop (){
     const [showOsList, setShowOsList] = useState(true)
     const [showProList, setShowProList] = useState(true)
     const [products, setProducts] = useState <Product[]>([])
+    const { searchTerm, setSearchTerm } = useSearch()
+
 
     useEffect(() => {
-    async function fetchProducts() {
-      const { data, error } = await supabase
-        .from('products')
-        .select(`
-          id,
-          name,
-          description,
-          price,
-          image_url,
-          category
-        `)
+        async function fetchProducts() {
+        const { data, error } = await supabase
+            .from('products')
+            .select(`id, name, description, price, slug, category`)
 
-      if (error) {
-        console.error('Error fetching products:', error)
-      } else {
-        setProducts(data)
-      }
-    }
+        if (error) console.error(error);
+        else setProducts(data);
+        }
+        fetchProducts();
+    }, []);
 
-    fetchProducts()
-    }, [])
+    const filteredProducts = products.filter(product =>
+        (product.name || '').toLowerCase().includes(searchTerm.toLowerCase())
+        )
+
 
     return (
         <>
@@ -87,7 +86,7 @@ export default function Shop (){
                         {showList && 
                             <div className= {styles.brandBoxBody}>
                                 <div className= {styles.checkbox}>
-                                    <input type='checkbox'/>
+                                    <input type='checkbox' onClick={() => {searchTerm !== 'asus' &&  setSearchTerm('asus')}}/>
                                     <p>Asus</p>
                                 </div>
                                 <div className= {styles.checkbox}>
@@ -169,9 +168,27 @@ export default function Shop (){
                     <button className= {styles.saveButton}>Save Changes</button>
                 </div>
                 <div className= {styles.productContainer}>
-                    {products.map((product)=>(
-                        <ProductCard image='/testLaptop4.jpg' title= {product.name} key={product.id} price={product.price} category= {'kone'}/>
-                    ))}
+                    {/* {products.map((product) => {
+                        const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.slug}.jpg`
+                        return (
+                            <ProductCard
+                            key={product.id}
+                            image={imageUrl}
+                            title={product.name}
+                            price={product.price}
+                            category={product.category}
+                            />
+                        )
+                    })} */}
+                    {filteredProducts.map(product => (
+        <ProductCard
+          key={product.id}
+          image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.slug}.jpg`}
+          title={product.name}
+          price={product.price}
+          category={product.category}
+        />
+      ))}
                 </div>
                 <p>Load More</p>
             </div>

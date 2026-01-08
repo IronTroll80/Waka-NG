@@ -24,7 +24,7 @@ export default function ProductCard ({image, title, price, category}: Props){
                 <p className= {styles.category}> {category} </p>
                 <div>
                     <p className= {styles.title}> {title}</p>
-                    <p className= {styles.price}> {price.toLocaleString()}</p>
+                    <p className= {styles.price}> ₦ {price.toLocaleString()}</p>
                 </div>
             </div>
 

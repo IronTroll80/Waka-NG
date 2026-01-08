@@ -55,6 +55,30 @@
     margin-top: 8px;
 }
 
+.navBar{
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--main-color);
+    gap: 5%;
+    color: white;
+    border-top: 1px solid #4e4e4e;
+}
+
+.navBar p{
+    cursor: pointer;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+    column-gap: .5rem;
+}
+
+.navBar p:hover{
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
 .mobileMenuContainer{
     width: 100%;
     position: fixed;
@@ -117,4 +141,9 @@
         border: none;
         margin-top: 8px;
     }
+
+    .navBar{
+        display: flex;
+    }
+
 }

@@ -32,6 +32,30 @@
     height: 100%;
 }
 
+.sales{
+    background-image: url('/bluePhone.jpg');
+}
+
+.quality{
+    background-image: url('/quality.png');
+}
+
+.delivery{
+    background-image: url('/delivery.png');
+}
+
+.pos{
+    background-image: url('/pos.png');
+}
+
+.speaker{
+    background-image: url('/speaker.png');
+}
+
+.promoOffer{
+    background-image: url('/promos.jpg');
+}
+
 .serviceInfo {
     color: white;
     display: flex;

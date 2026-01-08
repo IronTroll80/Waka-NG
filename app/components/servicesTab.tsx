@@ -24,7 +24,7 @@ export default function ServicesTab (){
                     </div>
                 </div>
             </div>
-            <div className= {`${styles.service} ${styles.quality}`}>
+            <div className= {`${styles.service} ${styles.promoOffer}`}>
                 <div className= {styles.overlay}>
                     <div className= {styles.serviceInfo}>
                         <Image src = {'/tested.svg'} alt = 'icon' width = {40} height = {40}/>

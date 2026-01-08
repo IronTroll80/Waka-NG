@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import styles from './productDetails.module.css'
-import { FaWhatsapp } from 'react-icons/fa'
-import { FaSquareWhatsapp } from 'react-icons/fa6'
 import { BsCart } from 'react-icons/bs'
+import TitleArea from './titleArea'
+import HomeProductGroup from './homeProductGroup'
 
 export default function ProductDetails (){
     return (
@@ -122,6 +122,10 @@ export default function ProductDetails (){
                     </p>
             </div>
         </div>
+
+        
+        <TitleArea title='Similar Products' subtitle='Check out similar products'/>
+        <HomeProductGroup/>
 
         </>
     )

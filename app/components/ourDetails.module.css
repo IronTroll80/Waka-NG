@@ -24,7 +24,8 @@
 .detail p{
     display: flex;
     align-items: center;
-    gap: 2%
+    gap: 2%;
+    font-weight: 600;
 }
 
 @media (min-width: 768px) {

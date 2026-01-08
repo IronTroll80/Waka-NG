@@ -2,15 +2,18 @@
 
 import Image from 'next/image'
 import styles from './header.module.css'
-import { FaBars, FaCaretDown, FaSearch } from 'react-icons/fa'
+import { FaBars, FaChevronDown } from 'react-icons/fa'
 import { MdSearch } from 'react-icons/md'
-import { BsCaretDown } from 'react-icons/bs'
 import { useState } from 'react'
 import { FaX } from 'react-icons/fa6'
+import { useSearch } from '../context/searchContext'
+
+
+
 
 export default function Header (){
 
-
+    const { searchTerm, setSearchTerm } = useSearch()
     const [modalShown, setModalShown] = useState(false)
 
     return(
@@ -20,7 +23,7 @@ export default function Header (){
                 <Image src={'/logo_white.svg'} alt='Logo' width={40} height={40}/>
             </div>
             <div className= {styles.search}>
-                <input type='search' placeholder='Search for items'/>
+                <input type='search' placeholder='Search for items' onChange={(e) => setSearchTerm(e.target.value)}/>
                 <span><MdSearch/></span>
             </div>
             <div className= {styles.menuButton}>
@@ -31,7 +34,17 @@ export default function Header (){
                 <button><Image src={'./settings.svg'} alt='settings' width={20} height={20} /></button>
                 <button><Image src={'./cart.svg'} alt='cart' width={20} height={20} /></button>
             </div>
+            
         </div>
+        <div className= {styles.navBar}>
+                    <p>Laptops <FaChevronDown/> </p>
+                    <p>Accessories <FaChevronDown/> </p>
+                    <p>Gadgets <FaChevronDown/> </p>
+                    <p>Phones <FaChevronDown/> </p>
+                    <p>Computer Accessories <FaChevronDown/> </p>
+                    <p>Audio and Music Equipment <FaChevronDown/> </p>
+                    <p>Computer Hardware <FaChevronDown/> </p>
+            </div>
 
         {modalShown && <div className= {styles.mobileMenuContainer}>
             <div className= {styles.mobileMenu}>
@@ -40,13 +53,13 @@ export default function Header (){
                     <span onClick={()=>{setModalShown(false)}}><FaX/></span>
                 </div>
                 <div className= {styles.categories}>
-                    <p>Laptops <BsCaretDown/> </p>
-                    <p>Accessories <BsCaretDown/> </p>
-                    <p>Gadgets <BsCaretDown/> </p>
-                    <p>Phones <BsCaretDown/> </p>
-                    <p>Computer Accessories <BsCaretDown/> </p>
-                    <p>Audio and Music Equipment <BsCaretDown/> </p>
-                    <p>Computer Hardware <BsCaretDown/> </p>
+                    <p>Laptops <FaChevronDown/> </p>
+                    <p>Accessories <FaChevronDown/> </p>
+                    <p>Gadgets <FaChevronDown/> </p>
+                    <p>Phones <FaChevronDown/> </p>
+                    <p>Computer Accessories <FaChevronDown/> </p>
+                    <p>Audio and Music Equipment <FaChevronDown/> </p>
+                    <p>Computer Hardware <FaChevronDown/> </p>
                 </div>
 
                 <hr/>

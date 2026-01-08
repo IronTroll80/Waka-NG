@@ -1,8 +1,7 @@
 
 
 .container {
-    width: auto; 
-    min-width: 70%; 
+    width: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -97,9 +96,16 @@
     .title { font-size: 16px; }
     .price { font-size: 18px; }
     .button { font-size: 16px; }
+    .container {
+        width: 100%;
+        min-width: none;
+    }
 }
 
 /* Desktop enhancements */
 @media (min-width: 1024px) {
     .cart { display: block; }
+    .container {
+        min-width: none;
+    }
 }

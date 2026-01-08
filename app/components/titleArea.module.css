@@ -16,6 +16,16 @@
     margin-top: 5px;
 }
 
+@media (min-width:768px) {
+    .container h3{
+        font-size: 35px;
+    }
+
+    .container p{
+        font-size: 15px;
+    }
+}
+
 /* .container h3{
     font-size: 32px;
     margin-bottom: 0px;

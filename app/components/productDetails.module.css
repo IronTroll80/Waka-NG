@@ -17,6 +17,11 @@
     flex-direction: column;
 }
 
+.route{
+    display: flex;
+    background-color: red;
+}
+
 .fullSpecsGroup{
     display: flex;
     align-items: center;

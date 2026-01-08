@@ -11,4 +11,62 @@
 .container i{
     font-weight: bold;
     text-decoration: underline;
+    cursor: pointer;
+}
+
+.modal{
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.425);
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalContent{
+    width: 40%;
+    aspect-ratio: 1/1;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modalContent p {
+    width: 85%;
+    text-align: right;
+    font-size: 20px;
+    color: var(--main-color);
+}
+
+.imageWrapper{
+    width: 55%;
+    aspect-ratio: 1/1;
+    position: relative;
+}
+
+.modalContent h4{
+    font-size: 30px;
+    color: var(--main-color);
+    margin-bottom: 5px;
+}
+
+.modalContent i {
+    color: var(--main-color);
+}
+
+.modalContent button{
+    width: 40%;
+    padding: .8rem;
+    margin-top: 1rem;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
 }
