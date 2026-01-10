@@ -187,6 +187,7 @@ export default function Shop (){
           title={product.name}
           price={product.price}
           category={product.category}
+          slug= {product.slug}
         />
       ))}
                 </div>

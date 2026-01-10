@@ -1,54 +1,115 @@
+
+
+'use client'
+
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { supabase } from '../utils/supabaseClient'
 import styles from './productDetails.module.css'
 import { BsCart } from 'react-icons/bs'
 import TitleArea from './titleArea'
 import HomeProductGroup from './homeProductGroup'
 
-export default function ProductDetails (){
-    return (
-        <>
-        
-        <div className= {styles.container}>
-            <div className= {styles.topBody}>
-                <div className= {styles.images}>
-                    <div className= {styles.mainImage}>
-                        <Image src = {'/alienware4.webp'} alt='product' fill/>
-                    </div>
-                    <div className= {styles.imageGroup}>
-                        <div className= {styles.subImage}>
-                            <Image src = {'/alienware3.jpg'} alt='product' fill/>
-                        </div>
-                        <div className= {styles.subImage}>
-                            <Image src = {'/alienware2.avif'} alt='product' fill/>
-                        </div>
-                        <div className= {styles.subImage}>
-                            <Image src = {'/alienware4.webp'} alt='product' fill/>
-                        </div>
-                        <div className= {styles.subImage}>
-                            <Image src = {'/alienware.jpg'} alt='product' fill/>
-                        </div>
-                    </div>
+type Product = {
+  id: string
+  name: string
+  description: string
+  price: number
+  category: string
+  slug: string
+  images: string[] // array of image filenames
+  specs: Record<string, string> // JSON object for specs
+  sku?: string
+  tags?: string[]
+  notes?: string
+}
+
+export default function ProductDetails() {
+  const { slug } = useParams() // App Router slug
+  const [product, setProduct] = useState<Product | null>(null)
+  const [mainImage, setMainImage] = useState<string>('')
+
+  useEffect(() => {
+    async function fetchProduct() {
+      const { data, error } = await supabase
+        .from('products')
+        .select('*')
+        .eq('slug', slug)
+        .single()
+
+      if (error) {
+        console.error(error)
+        return
+      }
+
+      setProduct(data)
+      if (data.images && data.images.length > 0) setMainImage(data.images[0])
+    }
+
+    fetchProduct()
+  }, [slug])
+
+  if (!product) return <p>Loading product...</p>
+
+  return (
+    <>
+      <div className={styles.container}>
+        <div className={styles.topBody}>
+          <div className={styles.images}>
+            <div className={styles.mainImage}>
+              <Image
+                src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${mainImage}`}
+                alt={product.name}
+                fill
+              />
+            </div>
+            <div className={styles.imageGroup}>
+              {product.images?.map((img, index) => (
+                <div
+                  key={index}
+                  className={styles.subImage}
+                  onClick={() => setMainImage(img)}
+                >
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${img}`}
+                    alt={`${product.name}-${index}`}
+                    fill
+                  />
                 </div>
-                <div className= {styles.body}>
-                    <p className= {styles.category}> Laptops </p>
-                        <p className= {styles.title}> Alienware 17 R2</p>
-                        <p className= {styles.price}> N1,560,000.00</p>
-                    <p className= {styles.desc}>
-                        Lorem Ipsum Dolor sit amet consecteur adipiscing elitLorem Ipsum Dolor 
-                        sit amet consecteur adipiscing elitLorem Ipsum Dolor sit amet consecteur adipiscing elit
-                    </p><br/>
-                    <p className= {styles.misc}>
-                        SKU : 22 <br/>
-                        Category : Gaming Laptops <br/>
-                        Tags : Gaming, Alienware, Dell, High-end
-                    </p>
-                    <div className= {styles.buttonGroup}>
-                        <button className= {styles.toCart}>Add To Cart <BsCart/></button>
-                        <div className= {styles.whatsapp}><Image src= {'/whatsapp.svg'} alt='Whatsapp' fill/></div>
-                    </div>
-                    <hr className= {styles.divider}/>
-                    <p className= {styles.specs}>Specs</p>
-                    <div className= {styles.specifications}>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.body}>
+            <p className={styles.category}>{product.category}</p>
+            <p className={styles.title}>{product.name}</p>
+            <p className={styles.price}>
+              {new Intl.NumberFormat('en-NG', {
+                style: 'currency',
+                currency: 'NGN',
+              }).format(product.price)}
+            </p>
+            <p className={styles.desc}>{product.description}</p>
+            <br />
+            <p className={styles.misc}>
+              SKU: {product.sku || 'N/A'} <br />
+              Category: {product.category} <br />
+              Tags: {product.tags?.join(', ') || 'N/A'}
+            </p>
+
+            <div className={styles.buttonGroup}>
+              <button className={styles.toCart}>
+                Add To Cart <BsCart />
+              </button>
+              <div className={styles.whatsapp}>
+                <Image src={'/whatsapp.svg'} alt='Whatsapp' fill />
+              </div>
+            </div>
+
+            <hr className={styles.divider} />
+
+                                <div className= {styles.specifications}>
                         <Image  src = {'/hp.svg'} alt = 'hp' width = {30} height = {30}/>
                         <Image  src = {'/i7.svg'} alt = 'i7' width = {30} height = {30}/>
                     </div>
@@ -56,69 +117,32 @@ export default function ProductDetails (){
             </div>
             <div className= {styles.bottomBody}>
                     <p className= {styles.fullSpecs}>Full Specifications</p>
-                    <div className= {styles.fullSpecsGroup}>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/processor.svg'} alt='processor' width={20} height={20}/>
-                                <p>Processor</p>
-                            </div>
-                            <p className= {styles.specName}>Intel Core i7-6700U </p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/storage.svg'} alt='storage' width={20} height={20}/>
-                                <p>Storage</p>
-                            </div>
-                            <p className= {styles.specName}>1TB HDD</p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/graphicsCard.svg'} alt='graphicsCard' width={20} height={20}/>
-                                <p>Graphics Card</p>
-                            </div>
-                            <p className= {styles.specName}>NVIDIA GTX 980M</p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/weight.svg'} alt='weight' width={20} height={20}/>
-                                <p>Weight</p>
-                            </div>
-                            <p className= {styles.specName}>3.2KG</p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/ram.svg'} alt='ram' width={20} height={20}/>
-                                <p>RAM</p>
-                            </div>
-                            <p className= {styles.specName}>16GB DDR3</p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/screenSize.svg'} alt='screen size' width={20} height={20}/>
-                                <p>Screen Size</p>
-                            </div>
-                            <p className= {styles.specName}>17'3 inches</p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/condition.svg'} alt='condition' width={20} height={20}/>
-                                <p>Condition</p>
-                            </div>
-                            <p className= {styles.specName}>UK Used</p>
-                        </div>
-                        <div className= {styles.item}>
-                            <div>
-                                <Image src={'/resolution.svg'} alt='resolution' width={20} height={20}/>
-                                <p>Resolution</p>
-                            </div>
-                            <p className= {styles.specName}>1920 x 1080 60HZ</p>
-                        </div>
-                        
+            <div className={styles.fullSpecsGroup}>
+            {product.specs &&
+                Object.entries(product.specs).map(([key, value], idx) => (
+                <div key={idx} className={styles.item}>
+                    <div>
+                    {/* SVG file is assumed to match the key name. */}
+                    <Image
+                        src={`/${key}.svg`}
+                        alt={key}
+                        width={20}
+                        height={20}
+                        onError={(e) => {
+                        // fallback if the SVG is missing
+                        (e.target as HTMLImageElement).src = '/defaultSpec.svg';
+                        }}
+                    />
+                    <p>{key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}</p>
                     </div>
+                    <p className={styles.specName}>{value}</p>
+                </div>
+                ))}
+            </div>
+
                     <p className= {styles.fullSpecs}>Other Notes</p><br/>
                     <p className= {styles.notes}>
-                        Lorem Ipsum Dolor sit amet consecteur adipiscing elitLorem Ipsum Dolor 
-                        sit amet consecteur adipiscing elitLorem Ipsum Dolor sit amet consecteur adipiscing elit
+                        {product.notes}
                     </p>
             </div>
         </div>
@@ -126,7 +150,6 @@ export default function ProductDetails (){
         
         <TitleArea title='Similar Products' subtitle='Check out similar products'/>
         <HomeProductGroup/>
-
-        </>
-    )
+    </>
+  )
 }

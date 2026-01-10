@@ -66,6 +66,13 @@
     border-top: 1px solid #4e4e4e;
 }
 
+.navItem{
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
 .navBar p{
     cursor: pointer;
     transition: .4s;
@@ -122,6 +129,41 @@
     gap: 1rem;
     display: flex;
     flex-direction: column;
+}
+
+
+.dropdown{
+    padding: 2rem;
+    width: 150%;
+    max-width: 150px;   
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--main-color);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-top: 40px;
+    animation: slideDown .4s;
+    height: auto;
+}
+
+.active{
+    display: flex;
+}
+
+.inactive{
+    display: none;
+}
+
+.dropdown p:hover{
+    text-decoration: underline;
+}
+
+@keyframes slideDown {
+    from {height: 90px};
+    to {height: 200px;}
 }
 
 @media (min-width: 768px) {
