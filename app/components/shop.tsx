@@ -62,11 +62,11 @@ export default function Shop (){
     return (
         <>
         <div className= {styles.container}>
-            
+            <p className={styles.route}>Home/Marketplace/Laptops</p>
+            <h3 className= {styles.header}>Laptops</h3>
             <div className= {styles.topnav}>
                 <div className= {styles.left}>
-                    <p>Home/Marketplace/Laptops</p>
-                    <h3>Laptops</h3>
+                    
                 </div>
                 <div className= {styles.right} onClick={()=>{setShowMenu(true)}}>
                     <Image src={'/filter.svg'} alt='filter' width={30} height={30}/>

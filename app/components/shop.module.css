@@ -13,13 +13,12 @@
     height: 100px;
 }
 
-
-.left p {
+.route{
     font-size: 10px;
     color: #9b9b9b;
 }
 
-.left h3{
+.header{
     margin-top: -10px;
     font-size: 16px;
     color: var(--main-color);
@@ -191,11 +190,11 @@
 @media (min-width: 768px) {
 
 
-    .left p {
+    .route {
         font-size: 12px;
     }
 
-    .left h3{
+    .header{
         margin-top: -12px;
         font-size: 18px;
     }
@@ -218,12 +217,12 @@
 
 @media (min-width: 1024px) {
 
-    .left p {
+    .route {
         font-size: 16px;
         margin-top: 2rem;
     }
 
-    .left h3{
+    .header{
         margin-top: -12px;
         font-size: 24px;
     }

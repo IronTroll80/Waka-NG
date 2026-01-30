@@ -10,6 +10,12 @@ body {
   overflow-x: hidden;
 }
 
+/* Prevent horizontal overflow */
+body, html {
+    overflow-x: hidden;
+}
+
+
 :root{
   --main-color: #096cc9;
   --accent-color: #ffb600; 

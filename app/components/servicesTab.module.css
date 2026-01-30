@@ -4,7 +4,6 @@
     padding: 1rem 0;
     flex-wrap: wrap;
     scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
     align-items: center;
     justify-content: center;
 }
@@ -17,7 +16,115 @@
     scrollbar-width: none;
 }
 
-.service, .longService {
+.serviceTabs{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+
+.serviceGroup h3{
+    font-size: 20px;
+    margin-bottom: 0px;
+    margin-top: 5px;
+    font-weight: 600;
+}
+
+.serviceGroup p{
+    font-size: 12px;
+    line-height: 26px;
+    margin-top: 5px;
+}
+
+.serviceGroup button{
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--main-color);
+    font-weight: 600;
+    font-size: 14px;
+    transition: .4s;
+}
+
+.serviceGroup button:hover{
+    background-color: var(--main-color);
+    color: white;
+}
+
+@media (min-width: 768px) {
+
+    .serviceGroup{
+        width: 30%;
+    }
+
+    .serviceTabs{
+        flex-direction: row;
+        gap: 3rem;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 
+@media (min-width: 768px) {
+    .container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(150px, auto);
+        gap: 1rem;
+        overflow-x: visible;
+        scroll-snap-type: none;
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+
+    .service, .longService {
+        width: 100%;
+    }
+
+    .longService {
+        aspect-ratio: 2 / 1;
+    }
+
+    .longService.pos {
+        grid-column: span 2;
+    }
+
+    .longService.speaker {
+        grid-column: span 2;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+ */
+
+
+/* /* .service, .longService {
     flex: 0 0 90%; 
     aspect-ratio: 1 / 1;
     border-radius: 20px;
@@ -26,7 +133,7 @@
     scroll-snap-align: start;
 }
 
-/* Overlay and info */
+
 .overlay {
     inset: 0;
     background-color: rgba(0,0,0,0.48);
@@ -77,40 +184,4 @@
     font-size: 10px;
     color: #d9d9d9;
     margin-top: 5px;
-}
-
-@media (min-width: 768px) {
-    .container {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-auto-rows: minmax(150px, auto);
-        gap: 1rem;
-        overflow-x: visible;
-        scroll-snap-type: none;
-        width: 100%;
-        max-width: 1600px;
-        margin: 0 auto;
-    }
-
-    .service, .longService {
-        width: 100%;
-    }
-
-    .longService {
-        aspect-ratio: 2 / 1;
-    }
-
-    .longService.pos {
-        grid-column: span 2;
-    }
-
-    .longService.speaker {
-        grid-column: span 2;
-    }
-}
-
-@media (min-width: 1200px) {
-    .container {
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
+} */

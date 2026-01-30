@@ -19,7 +19,6 @@
 .card {
   min-width: 75%;
   aspect-ratio: 3 / 4;
-  scroll-snap-align: start;
 }
 
 .card {
@@ -30,6 +29,7 @@
     overflow: hidden;
     width: 90%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    scroll-snap-align: start;
     aspect-ratio: 1/1;
 }
 
@@ -43,7 +43,7 @@
 
 .overlay {
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     color: white;
     display: flex;
     align-items: center;

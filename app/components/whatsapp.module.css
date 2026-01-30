@@ -1,83 +1,127 @@
-.container{
+.container {
     position: fixed;
-    right: 30;
-    margin-top: 60vh;
-    z-index: 20;
-}
-
-.container .button{
-    cursor: pointer;
-    justify-self: right;
-    margin-top: 120px;
-}
-
-.contact {
-    width: 250px;
-    height: 120px;
-    padding: .4rem;
-    margin-bottom: -300px;
-    align-items: center;
-    justify-content: center;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    display: flex;
     flex-direction: column;
-    background-color: #25d366;
-    border-radius: 10px;
-    margin-bottom: -10px;
-    color: white;
-    font-size: 16px;
-    overflow: hidden;
-    animation: slideIn .5s forwards;
-    box-shadow: 0px 0px 8px #888;
-    flex: 0 0 auto;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    align-items: flex-end;
 }
 
-.contact button{
-    width: 200px;
-    background-color: white;
-    border-radius: 10px;
-    border: none;
-    padding: .8rem;
+.fab {
     cursor: pointer;
-    color: #25d366;
+    transition: transform 0.2s ease;
+}
+
+.fab:hover {
+    transform: scale(1.1);
+}
+
+.chatCard {
+    width: 280px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+
+.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.hide {
+    transform: translateY(100%);
+    opacity: 0;
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    background-color: #25d366;
+    color: white;
+}
+
+.avatar {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+}
+
+.name {
     font-weight: 600;
+    font-size: 16px;
+    margin: 0;
 }
 
-@keyframes slideIn {
-    from {width: 0px;}
-    to {width: 250px;}
-} 
-
-.show{
-    display: flex;
+.status {
+    font-size: 12px;
+    opacity: 0.8;
+    margin: 0;
 }
 
-.hide{
-    display: none;
+.bubble {
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 10px 12px;
+    margin: 12px;
+    border-radius: 12px;
+    font-size: 14px;
 }
-/* 
-.contact {
-    width: 250px;
-    height: 120px;
-    padding: .4rem;
+
+
+.chatButton {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    gap: 8px;
     background-color: #25d366;
-    border-radius: 10px;
-    margin-bottom: -10px;
     color: white;
-    font-size: 16px;
-    overflow: hidden;
-
-    transform: translateX(-100%);
-    animation: slideIn 0.6s ease forwards;
+    font-weight: 600;
+    padding: 10px;
+    margin: 12px;
+    border-radius: 12px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-@keyframes slideIn {
-    to {
-        transform: translateX(0);
+.chatButton:hover {
+    background-color: #1ebe57;
+    transform: translateY(-2px);
+}
+
+@media screen and (max-width: 480px) {
+    .chatCard {
+        width: 90%;
+        right: 5%;
     }
-} */
+}
+
+.closeButton {
+    margin-left: auto;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0;
+    transition: transform 0.2s ease;
+}
+
+.closeButton:hover {
+    transform: scale(1.2);
+}

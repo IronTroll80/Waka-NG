@@ -14,22 +14,21 @@ export default function HotProduct ({image, hot, title, price, category}: Props)
     return(
         <>
         
-        <div className= {styles.container}>
+        <div className= {styles.container} title= {title}>
 
             <div className= {styles.imageWrapper}>
                 <Image src={image} alt='id' fill />
-                <div className= {styles.cart}><MdShoppingCartCheckout/> <span>Add to Cart</span></div>
             </div>
 
             <div className= {styles.body}>
                 <p className= {styles.category}> {category} </p>
                 <div>
                     <p className= {styles.title}> {title}</p>
-                    <p className= {styles.price}> {price.toLocaleString()}</p>
+                    <p className= {styles.price}>₦ {price.toLocaleString()}</p>
                 </div>
             </div>
 
-            <button className= {styles.button}>Purchase</button>
+            <button className= {styles.button}>See Details</button>
             {hot && <div className= {styles.hotTag}>HOT</div>}
         </div>
 

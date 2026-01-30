@@ -19,7 +19,6 @@ export default function ProductCard ({image, title, price, category, slug}: Prop
 
                 <div className= {styles.imageWrapper}>
                     <Image src={image} alt='id' fill />
-                    <div className= {styles.cart}><MdShoppingCartCheckout/></div>
                 </div>
 
                 <div className= {styles.body}>
@@ -30,7 +29,7 @@ export default function ProductCard ({image, title, price, category, slug}: Prop
                     </div>
                 </div>
 
-                <button className= {styles.button}>Purchase</button>
+                <button className= {styles.button}>See Details</button>
         </Link>
 
             </div>
