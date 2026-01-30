@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Header from "./components/header";
 import TopPromo from "./components/topPromo";
 import Footer from "./components/footer";
@@ -10,12 +9,14 @@ import ServicesTab from "./components/servicesTab";
 import DiscountDeals from "./components/discountDeals";
 import Newsletter from "./components/newsletter";
 import Brands from "./components/brands";
+import Whatsapp from "./components/whatsapp";
 
 export default function Home() {
   return (
     <>
     <TopPromo/>
       <Header/>
+      <Whatsapp/>
       <Hero/>
       <TitleArea title="Our Top Categories" subtitle="Lorem Ipsum dolor sit amet consecteur"/>
       <BentoCategories/>

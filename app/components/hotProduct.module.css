@@ -6,6 +6,22 @@
     flex-direction: column;
     align-items: center;
     position: relative;
+    transition: .4s;
+}
+
+.container:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.404);
+    border-radius: 20px;
+}
+
+.container:hover .cart{
+    width: 115px;
+}
+
+.container:hover .cart span{
+    display: inline-block;
 }
 
 .imageWrapper {
@@ -47,6 +63,7 @@
     border-radius: 5px;
     transition: .3s;
     aspect-ratio: 6/1;
+    margin-bottom: 1rem;
 }
 
 .button:hover {
@@ -59,7 +76,6 @@
     top: 10px;
     left: 10px;
 }
-
 
 
 .hotTag{
@@ -75,20 +91,39 @@
 }
 
 .cart{
-    display: none;
     font-size: 16px;
     background-color: white;
     box-shadow: 0px 0px 4px #979797;
-    padding: .4rem;
+    padding-right: 1rem;
+    padding-top: .4rem;
+    padding-bottom: .2rem;
+    padding-left: .6rem;
     border-radius: 5px;
     color: var(--main-color);
     font-weight: 600;
     position: absolute;
-    right: 0px;
+    right: 20px;
     bottom: 0px;
-    cursor: pointer;
+    width: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    transition: .2s;
+    cursor: pointer;    
 }
 
+.cart span {
+    display: none;
+    text-wrap: 0;
+    white-space-collapse: preserve;
+    line-break: 0;
+    overflow: hidden;
+}
+
+.cart:hover{
+    background-color: var(--main-color);
+    color: #fff;
+}
 
 /* Tablet text scale */
 @media (min-width: 768px) {

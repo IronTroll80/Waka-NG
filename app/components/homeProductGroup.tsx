@@ -11,6 +11,11 @@ export default function HomeProductGroup(){
             <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop2.webp'/>
             <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
             <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+            <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+            <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+            <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+            <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
+            <HotProduct category='Laptops' title='Alienware 17 R2' hot = {true} price={1249999.99} image='/testLaptop3.webp'/>
             
         </div>
         

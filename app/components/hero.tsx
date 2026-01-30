@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import styles from './hero.module.css'
 
 export default function Hero(){
@@ -7,7 +8,7 @@ export default function Hero(){
                 <div className= {styles.overlay}>
                     <h3>Trusted Phones, Laptops and Gadgets</h3>
                     <p>Original devices, fair pricing and fast delivery to anywhere in Nigeria</p>
-                    <button>Shop Now</button>
+                    <button><Link href={'/marketplace'} className= {styles.link}>Shop Now </Link></button>
                 </div>
             </div>
         </>

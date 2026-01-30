@@ -2,11 +2,13 @@
 
 .container {
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
-  overflow-x: auto;
   padding: 1rem;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
+  align-items: center;
+  justify-content: center;
 }
 
 .container::-webkit-scrollbar {
@@ -20,15 +22,13 @@
   scroll-snap-align: start;
 }
 
- 
-
 .card {
     border-radius: 20px;
     background-size: cover;
     background-position: center;
     position: relative;
     overflow: hidden;
-    width: 40%;
+    width: 90%;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     aspect-ratio: 1/1;
 }
@@ -48,8 +48,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+    font-size: 24px;
     justify-content: center;
-    font-size: 10px;
     height: 100%;
     cursor: pointer;
 }
@@ -85,6 +85,12 @@
   opacity: 0%;
 }
 
+.logoWrap{
+  position: relative;
+  width: 30px;
+  aspect-ratio: 1/1;
+  align-self: flex-start;
+}
 
 @media (min-width: 1024px) {
   .container {
@@ -133,6 +139,6 @@
   }
 
   .overlay {
-    font-size: 18px;
+    font-size: 24px;
   }
 }

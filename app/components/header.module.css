@@ -86,16 +86,29 @@
     color: var(--accent-color);
 }
 
-.mobileMenuContainer{
+.mobileMenuContainer {
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.548);
-    z-index: 1;
-    min-height: fit-content;
+    z-index: 10;
     height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
 }
+
+.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 .mobileMenu{
     width: 80%;
@@ -160,6 +173,7 @@
 .dropdown p:hover{
     text-decoration: underline;
 }
+
 
 @keyframes slideDown {
     from {height: 90px};

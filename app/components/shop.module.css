@@ -48,6 +48,7 @@
     min-height: fit-content;
     height: 100%;
     display: flex;
+    touch-action: none;
 }
 
 .mobileMenu{
@@ -60,6 +61,8 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .mobileMenu h3{
@@ -80,7 +83,7 @@
 }
 
 .priceBox{
-    border: 1px solid #1e1a599d;
+    box-shadow: 0px 0px 8px #ddd;
     width: 80%;
     border-radius: 10px;
     padding-left: 5%;
@@ -129,7 +132,7 @@
 }
 
 .brandBox{
-    border: 1px solid #1e1a599d;
+    box-shadow: 0px 0px 8px #ddd;
     width: 85%;
     border-radius: 10px;
     align-items: center;
@@ -228,7 +231,7 @@
     .productContainer{
         justify-content: flex-start;
         row-gap: 7rem;
-        column-gap: 2%;
+        column-gap: 0%;
     }
 
     .desktopMenu{

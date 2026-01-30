@@ -3,6 +3,7 @@
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'
 import styles from './bentoCategories.module.css'
 import { useState } from 'react'
+import Image from 'next/image'
 
 export default function BentoCategories (){
 
@@ -20,6 +21,9 @@ export default function BentoCategories (){
             <div className={`${styles.card} ${styles.phones}`}>
                 <div className={styles.overlay} onMouseOver={()=>{setShowButtonPhones(true)}} onMouseOut={()=>{setShowButtonPhones(false)}}>
                     <h3>PHONES</h3>
+                    {/* <div className= {styles.logoWrap}>
+                        <Image src={'/logo_blue.svg'} alt='logo'fill/>
+                    </div> */}
                     <button className= {showButtonPhones ? `${styles.active}`: `${styles.inactive}`}> {showButtonPhones && `Shop`}</button>
                 </div>
             </div>

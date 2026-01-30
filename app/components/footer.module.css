@@ -36,6 +36,10 @@
     font-size: 12px;
 }
 
+.link{
+    color: white;
+}
+
 @media (min-width: 1024px) {
     .container{
         flex-direction: row;

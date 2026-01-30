@@ -111,7 +111,10 @@ export default function Header (){
                     
             </div>
 
-        {modalShown && <div className= {styles.mobileMenuContainer}>
+        <div
+                        className={`${styles.mobileMenuContainer} ${
+                            modalShown ? styles.show : styles.hide
+                        }`}>
             <div className= {styles.mobileMenu}>
                 <div className= {styles.topItems}>
                     <Image src={'./logo_white.svg'} alt='Logo' width={80} height={80} className= {styles.menuLogo}/>
@@ -135,7 +138,7 @@ export default function Header (){
                     <p>Settings</p>
                 </div>
             </div>
-        </div>}
+        </div>
 
         
         </>

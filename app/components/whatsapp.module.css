@@ -1,0 +1,83 @@
+.container{
+    position: fixed;
+    right: 30;
+    margin-top: 60vh;
+    z-index: 20;
+}
+
+.container .button{
+    cursor: pointer;
+    justify-self: right;
+    margin-top: 120px;
+}
+
+.contact {
+    width: 250px;
+    height: 120px;
+    padding: .4rem;
+    margin-bottom: -300px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #25d366;
+    border-radius: 10px;
+    margin-bottom: -10px;
+    color: white;
+    font-size: 16px;
+    overflow: hidden;
+    animation: slideIn .5s forwards;
+    box-shadow: 0px 0px 8px #888;
+    flex: 0 0 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact button{
+    width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    border: none;
+    padding: .8rem;
+    cursor: pointer;
+    color: #25d366;
+    font-weight: 600;
+}
+
+@keyframes slideIn {
+    from {width: 0px;}
+    to {width: 250px;}
+} 
+
+.show{
+    display: flex;
+}
+
+.hide{
+    display: none;
+}
+/* 
+.contact {
+    width: 250px;
+    height: 120px;
+    padding: .4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #25d366;
+    border-radius: 10px;
+    margin-bottom: -10px;
+    color: white;
+    font-size: 16px;
+    overflow: hidden;
+
+    transform: translateX(-100%);
+    animation: slideIn 0.6s ease forwards;
+}
+
+@keyframes slideIn {
+    to {
+        transform: translateX(0);
+    }
+} */

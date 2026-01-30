@@ -18,15 +18,15 @@ type Product = {
   price: number
   category: string
   slug: string
-  images: string[] // array of image filenames
-  specs: Record<string, string> // JSON object for specs
+  images: string[] 
+  specs: Record<string, string>
   sku?: string
   tags?: string[]
   notes?: string
 }
 
 export default function ProductDetails() {
-  const { slug } = useParams() // App Router slug
+  const { slug } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
   const [mainImage, setMainImage] = useState<string>('')
 
@@ -34,7 +34,7 @@ export default function ProductDetails() {
     async function fetchProduct() {
       const { data, error } = await supabase
         .from('products')
-        .select('*')
+        .select(`*`)
         .eq('slug', slug)
         .single()
 
@@ -50,7 +50,7 @@ export default function ProductDetails() {
     fetchProduct()
   }, [slug])
 
-  if (!product) return <p>Loading product...</p>
+  if (!product) return <div className={styles.spinner}></div>
 
   return (
     <>
@@ -122,14 +122,12 @@ export default function ProductDetails() {
                 Object.entries(product.specs).map(([key, value], idx) => (
                 <div key={idx} className={styles.item}>
                     <div>
-                    {/* SVG file is assumed to match the key name. */}
                     <Image
                         src={`/${key}.svg`}
                         alt={key}
                         width={20}
                         height={20}
                         onError={(e) => {
-                        // fallback if the SVG is missing
                         (e.target as HTMLImageElement).src = '/defaultSpec.svg';
                         }}
                     />

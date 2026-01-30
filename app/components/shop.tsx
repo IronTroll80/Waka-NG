@@ -47,6 +47,17 @@ export default function Shop (){
         (product.name || '').toLowerCase().includes(searchTerm.toLowerCase())
         )
 
+    useEffect(() => {
+        if (showMenu) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = ''
+        }
+
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, [showMenu])
 
     return (
         <>
@@ -205,7 +216,7 @@ export default function Shop (){
                     <div className= {styles.minMax}>
                         <div className= {styles.inputBox}>
                             <span>₦</span>
-                            <input type='text'/>
+                            <input type="number" inputMode="numeric" />
                             <p>Min</p>
                         </div>
                         <div className= {styles.divider}>
@@ -213,7 +224,7 @@ export default function Shop (){
                         </div>
                         <div className= {styles.inputBox}>
                             <span>₦</span>
-                            <input type='text'/>
+                            <input type="number" inputMode="numeric" />
                             <p>Max</p>
                         </div>
                     </div>

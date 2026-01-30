@@ -18,7 +18,7 @@ export default function HotProduct ({image, hot, title, price, category}: Props)
 
             <div className= {styles.imageWrapper}>
                 <Image src={image} alt='id' fill />
-                <div className= {styles.cart}><MdShoppingCartCheckout/></div>
+                <div className= {styles.cart}><MdShoppingCartCheckout/> <span>Add to Cart</span></div>
             </div>
 
             <div className= {styles.body}>

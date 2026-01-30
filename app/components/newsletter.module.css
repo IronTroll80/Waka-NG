@@ -1,66 +1,3 @@
-/* .container{
-    width: 80%;
-    background-image: url('/newsletter.png');
-    aspect-ratio: 19.1/5;
-    justify-self: center;
-    border-radius: 20px;
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    justify-content: left;
-    display: flex;
-    flex-direction: column;
-    padding-left: 5%;
-    gap: 4%;
-    justify-content: center;
-}
-
-.container h3{
-    color: white;
-    font-size: 48px;
-    margin-bottom: 0px;
-}
-
-.container p{
-    font-size: 16px;
-    color: white;
-    margin-top: 0px;
-}
-
-.inputContainer{
-    width: 20%;
-    height: 50px;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.inputContainer input{
-    width: 70%;
-    font-size: 14px;
-    border: none;
-}
-
-.inputContainer button{
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: .4rem;
-    padding-bottom: .4rem;
-    border: none;
-    border-radius: 10px;
-    color:white;
-    background-color: #160e64;
-    cursor: pointer;
-    transition: .4s;
-}
-
-.inputContainer button:hover{
-    background-color: #1c1277;
-} */
-
-
 .container{
     width: 80%;
     background-image: url('/newsletter.png');
@@ -128,7 +65,7 @@
 
 @media (min-width: 768px) {
      .container{
-        aspect-ratio: 19/5;
+        aspect-ratio: 19/7;
     }
 
     .container h3{
