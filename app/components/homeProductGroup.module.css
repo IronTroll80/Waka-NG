@@ -3,7 +3,7 @@
     gap: 1rem;
     padding: 1rem;
     flex-direction: column;
-    flex: 0 0 70%;
+    flex: 0 0 100%;
 }
 
 .container::-webkit-scrollbar {
