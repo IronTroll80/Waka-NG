@@ -44,9 +44,7 @@
     .container{
         flex-direction: row;
         justify-content: space-evenly;
+        padding: 1rem;
     }
 
-    .newsletter input{
-        width: 100%;
-    }
 }

@@ -55,15 +55,23 @@
     margin-top: 8px;
 }
 
-.navBar{
+.navBarContainer{
     width: 100%;
     display: none;
+    background-color: var(--main-color);
+    border-top: 1px solid #4e4e4e;
     align-items: center;
     justify-content: center;
-    background-color: var(--main-color);
-    gap: 5%;
+}
+
+.navBar{
+    width: 100%;
     color: white;
-    border-top: 1px solid #4e4e4e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    max-width: 900px;
 }
 
 .navItem{
@@ -78,7 +86,8 @@
     transition: .4s;
     display: flex;
     align-items: center;
-    column-gap: .5rem;
+    column-gap: .2rem;
+    z-index: 3;
 }
 
 .navBar p:hover{
@@ -127,14 +136,15 @@
 }
 
 .topItems{
-    display: flex;
+    display: none;
     justify-content: space-between;
     width: 90%;
     align-items: center;
+    max-width: 1200px;
 }
 
 .topItems span{
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .menuLogo ,.categories, .misc{
@@ -191,7 +201,6 @@
     }
 
     .miscButtons button{
-        color: white;
         background-color: transparent;
         font-size: 24px;
         border: none;
@@ -202,4 +211,10 @@
         display: flex;
     }
 
+}
+
+@media (min-width: 1024px) {
+    .navBarContainer{
+        display: flex;
+    }
 }

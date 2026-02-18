@@ -13,17 +13,17 @@
     height: 100%;
     width: 100%;
     display: flex;
-    text-align: center;
-    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.logo{
-    position: relative;
-    height: 200;
-    width: 240;
-    margin-bottom: -100px;
-    margin-top: -100px;
-    align-self: center;
+.content{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    max-width: 900px;
 }
 
 .left{
@@ -34,13 +34,11 @@
 
 .left h3{
     font-size: 36px;
-    padding: 1rem;
-    margin-bottom: 0px;
+    margin-bottom: 50px;
 }
 
 .left p{
     font-size: 12px;
-    padding: 1rem;
     margin-top: -20px;
 }
 
@@ -83,21 +81,26 @@
     display: none;
 }
 
-
-
 @media (min-width: 768px) {
+    .content{
+        max-width: 500px;
+    }
+}
+
+
+@media (min-width: 1024px) {
     
     .container {
         height: 80vh;
     }
-    
-    .overlay{
-        padding-left: 100px;
+   
+    .content{
+        max-width: 900px;
     }
 
     .left h3{
-    font-size: 72px;
-    width: 65%;
+    font-size: 50px;
+     width: 60%;
     text-align: left;
     }
 
@@ -126,6 +129,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        width: fit-content;
     }
     
 .right{
@@ -198,117 +202,4 @@
     background-color: #fff;
 }
 
-}
-
-.right {
-    display: none; /* hidden on mobile */
-}
-
-@media (min-width: 768px) {
-    .right {
-        width: 45%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding-left: 20px;
-    }
-
-    .logo{
-        align-self: flex-start;
-    }
-
-    .box {
-        width: 100%;
-        max-width: 320px;
-        background: linear-gradient(135deg, #4da0ff, #2952ff);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: white;
-        border-radius: 16px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-        padding: 20px;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        position: relative;
-    }
-
-    .box:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-    }
-
-    .imageWrapper {
-        position: relative;
-        width: 80%;
-        aspect-ratio: 1/1;
-        border-radius: 12px;
-        overflow: hidden;
-        margin-bottom: 15px;
-        cursor: pointer;
-        transition: transform 0.3s ease;
-    }
-
-    .productImage {
-        object-fit: contain;
-        transition: transform 0.3s ease;
-    }
-
-    .imageWrapper:hover .productImage {
-        transform: scale(1.1);
-    }
-
-    .productName {
-        font-size: 18px;
-        font-weight: 600;
-        margin: 0 0 5px 0;
-        text-align: center;
-    }
-
-    .price {
-        font-size: 20px;
-        font-weight: 700;
-        margin: 0 0 15px 0;
-        text-align: center;
-    }
-
-    .purchaseButton {
-        width: 80%;
-        padding: 10px;
-        border: none;
-        border-radius: 12px;
-        background-color: white;
-        color: #2952ff;
-        font-weight: 700;
-        cursor: pointer;
-        transition: transform 0.2s ease, background-color 0.3s ease;
-        margin-bottom: 15px;
-    }
-
-    .purchaseButton:hover {
-        background-color: #f0f0f0;
-        transform: translateY(-2px);
-    }
-
-    .imageNav {
-        display: flex;
-        gap: 10px;
-        justify-content: center;
-    }
-
-    .imageCircle {
-        width: 10px;
-        aspect-ratio: 1/1;
-        border-radius: 50%;
-        background-color: rgba(255,255,255,0.5);
-        transition: background-color 0.3s ease, transform 0.3s ease;
-        cursor: pointer;
-    }
-
-    .imageCircle:hover {
-        transform: scale(1.2);
-    }
-
-    .imageCircle.active {
-        background-color: white;
-    }
 }

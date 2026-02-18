@@ -10,6 +10,7 @@ import styles from './productDetails.module.css'
 import { BsCart } from 'react-icons/bs'
 import TitleArea from './titleArea'
 import HomeProductGroup from './homeProductGroup'
+import SimilarProducts from './similarProducts'
 
 type Product = {
   id: string
@@ -23,6 +24,7 @@ type Product = {
   sku?: string
   tags?: string[]
   notes?: string
+  categoryName?: string
 }
 
 export default function ProductDetails() {
@@ -82,7 +84,7 @@ export default function ProductDetails() {
           </div>
 
           <div className={styles.body}>
-            <p className={styles.category}>{product.category}</p>
+            <p className={styles.category}>{product.categoryName}</p>
             <p className={styles.title}>{product.name}</p>
             <p className={styles.price}>
               {new Intl.NumberFormat('en-NG', {
@@ -94,18 +96,26 @@ export default function ProductDetails() {
             <br />
             <p className={styles.misc}>
               SKU: {product.sku || 'N/A'} <br />
-              Category: {product.category} <br />
+              Category: {product.categoryName} <br />
               Tags: {product.tags?.join(', ') || 'N/A'}
             </p>
 
-            <div className={styles.buttonGroup}>
-              <button className={styles.toCart}>
-                Add To Cart <BsCart />
-              </button>
+          <div className={styles.buttonGroup}>
+            <a
+              href={`https://wa.me/2348133896617?text=${encodeURIComponent(
+                `Hi Waka NG, I would like to purchase the ${product.name}.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.toCart} // keep your existing button styles
+            >
+              <BsCart /> Purchase
               <div className={styles.whatsapp}>
                 <Image src={'/whatsapp.svg'} alt='Whatsapp' fill />
               </div>
-            </div>
+            </a>
+          </div>
+
 
             <hr className={styles.divider} />
 
@@ -147,7 +157,12 @@ export default function ProductDetails() {
 
         
         <TitleArea title='Similar Products' subtitle='Check out similar products'/>
-        <HomeProductGroup/>
+        
+        <SimilarProducts 
+          category={product.category}
+          currentProductId={product.id}
+        />
+
     </>
   )
 }

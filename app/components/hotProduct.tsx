@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './hotProduct.module.css'
 import { MdShoppingCartCheckout } from 'react-icons/md'
+import Link from 'next/link';
 
 interface Props {
     image: string;
@@ -8,12 +9,14 @@ interface Props {
     title: string;
     price: number;
     category: string;
+    slug: string;
 }
 
-export default function HotProduct ({image, hot, title, price, category}: Props){
+export default function HotProduct ({image, hot, title, price, category, slug}: Props){
     return(
         <>
         
+        <Link href={`/product/${slug}`}>
         <div className= {styles.container} title= {title}>
 
             <div className= {styles.imageWrapper}>
@@ -31,6 +34,7 @@ export default function HotProduct ({image, hot, title, price, category}: Props)
             <button className= {styles.button}>See Details</button>
             {hot && <div className= {styles.hotTag}>HOT</div>}
         </div>
+        </Link>
 
         </>
     )

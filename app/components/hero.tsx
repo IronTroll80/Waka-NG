@@ -8,6 +8,7 @@ export default function Hero(){
         <>
             <div className= {styles.container}>
                 <div className= {styles.overlay}>
+                  <div className= {styles.content}>
                     <div className= {styles.left}>
                         <div className= {styles.logo}>
                         </div>
@@ -18,24 +19,9 @@ export default function Hero(){
                             <button className= {styles.secondary}>Explore Services</button>
                         </div>
                     </div>
-{/* <div className={styles.right}>
-  <div className={styles.box}>
-    <div className={styles.imageWrapper}>
-      <Image src={'/oraimo.png'} alt='product' fill className={styles.productImage}/>
-    </div>
-    <p className={styles.productName}>Oraimo Space Box Pro</p>
-    <h4 className={styles.price}>N 130,000</h4> 
-    <button className={styles.purchaseButton}>Purchase</button>
-    <div className={styles.imageNav}>
-      <div className={`${styles.imageCircle} ${styles.active}`}></div>
-      <div className={styles.imageCircle}></div>
-      <div className={styles.imageCircle}></div>
-      <div className={styles.imageCircle}></div>
-    </div>
-  </div>
-</div> */}
-<HeroProductCarousel/>
 
+                    <HeroProductCarousel/>
+                  </div>
 
                        
 

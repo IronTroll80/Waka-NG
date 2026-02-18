@@ -17,10 +17,6 @@
     flex-direction: column;
 }
 
-.route{
-    display: flex;
-    background-color: red;
-}
 
 .fullSpecsGroup{
     display: flex;
@@ -96,13 +92,14 @@
 }
 
 .toCart{
-    background-color: var(--accent-color);
+    background-color: #25d366;
     border: none;
-    padding: .8rem;
+    padding: .6rem;
     border-radius: 3px;
-    font-size: 12px;
+    font-size: 14px;
     width: 60%;
-    color: #1c271c;
+    color: #fff;
+    font-weight: 600;
     display: flex;
     gap: 5%;
     align-items: center;
@@ -111,7 +108,7 @@
 }
 
 .whatsapp{
-    width: 40px;
+    width: 30px;
     aspect-ratio: 1/1;
     position: relative;
     padding: 0;

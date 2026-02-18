@@ -31,9 +31,9 @@
 
 .inputContainer{
     width: 80%;
-    height: 45px;
+    aspect-ratio: 2/0.5;
     background-color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,6 +42,7 @@
 .inputContainer input{
     width: 70%;
     font-size: 10px;
+    padding-left: 1rem;
     border: none;
 }
 
@@ -51,12 +52,13 @@
     padding-top: .4rem;
     padding-bottom: .4rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color:white;
     background-color: #1c274c;
     cursor: pointer;
     transition: .4s;
     font-size: 10px;
+    margin-right: 1rem;
 }
 
 .inputContainer button:hover{
@@ -82,7 +84,8 @@
 
     .inputContainer{
     width: 25%;
-    height: 60px;
+    height: 45px;
+    margin-bottom: 1rem;
 }
 
     .inputContainer input{

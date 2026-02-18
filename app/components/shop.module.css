@@ -3,6 +3,9 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    max-width: 1200px;
+    justify-self: center;
+    align-self: center;
 }
 
 .topnav{
@@ -187,23 +190,62 @@
     display: none;
 }
 
+.productPageContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.loadMore{
+    align-self: center;
+    justify-self: center;
+    background-color: transparent;
+    color: var(--main-color);
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.loadMore:hover{
+    text-decoration: underline;
+}
+
+.loadingSpinner{
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--main-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    background-color: transparent;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.noProductsFound{
+    font-size: 14px;
+    color: var(--main-color);
+    font-weight: 500;
+}
+
 @media (min-width: 768px) {
 
-
-    .route {
-        font-size: 12px;
-    }
-
-    .header{
-        margin-top: -12px;
-        font-size: 18px;
-    }
     
+    .productPageContainer{
+        flex: 1;
+        align-items: flex-start;
+    }
+
     .productContainer{
         justify-content: center;
-        gap: 5%
+        gap: 5rem;
     }
-
 
     .alignContainer{
         display: flex;
@@ -211,30 +253,25 @@
         padding-left: 6%;
         gap: 3%;
         margin-bottom: 3rem;
-        align-items: flex-start;
+        justify-content: flex-start;
     }
 }
 
 @media (min-width: 1024px) {
 
-    .route {
-        font-size: 16px;
-        margin-top: 2rem;
+    .topnav{
+        display: none;
     }
-
-    .header{
-        margin-top: -12px;
-        font-size: 24px;
-    }
-
     .productContainer{
-        justify-content: flex-start;
+        align-items: flex-start;
         row-gap: 7rem;
         column-gap: 0%;
+        margin-top: 4rem;
     }
 
     .desktopMenu{
         width: 20%;
+        min-width: 250px;
         height: 100%;
         color:black;
         padding-top: 2rem;
@@ -242,6 +279,7 @@
         flex-direction: column;
         align-items: center;
         gap: 1rem;
+        margin-top: 4rem;
     }
 
     .right{
@@ -252,6 +290,7 @@
         display: flex;
         width: 100%;
         padding-left: 6%;
+        min-width: 1200px;
         gap: 3%;
         margin-bottom: 3rem;
         align-items: flex-start;
