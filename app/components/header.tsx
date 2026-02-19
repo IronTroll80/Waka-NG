@@ -18,13 +18,14 @@ export default function Header (){
     const [modalShown, setModalShown] = useState(false)
     const [showDropdown, setShowDropdown] = useState ('')
     const categories = [
-        'Laptops',
-        'Accessories',
+        
         'Tablets',
         'Phones',
+        'Accessories',
         'Smartwatches',
         'Speakers',
         'Earbuds',
+        'Powerbanks'
     ]
 
     return(

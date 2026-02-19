@@ -126,7 +126,7 @@ export default function ProductDetails() {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.toCart} // keep your existing button styles
+              className={styles.toCart}
             >
               <BsCart /> Purchase
               <div className={styles.whatsapp}>

@@ -36,12 +36,14 @@ export default function Whatsapp() {
             <p>Hi there! 👋 Need help choosing a gadget?</p>
           </div>
 
-          <a
-            href="https://wa.me/234xxxxxxxxxx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.chatButton}
-          >
+           <a
+              href={`https://wa.me/2348133896617?text=${encodeURIComponent(
+                `Hi Waka NG, I need help choosing a gadget.`
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.chatButton}
+            >
             <Image
               src="/whatsapp.svg"
               alt="WhatsApp"
