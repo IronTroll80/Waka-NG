@@ -1,7 +1,10 @@
+'use client'
+
 import Image from 'next/image'
 import styles from './hotProduct.module.css'
 import { MdShoppingCartCheckout } from 'react-icons/md'
 import Link from 'next/link';
+import { useState } from 'react';
 
 interface Props {
     image: string;
@@ -13,6 +16,9 @@ interface Props {
 }
 
 export default function HotProduct ({image, hot, title, price, category, slug}: Props){
+    const fallbackImage = '/fallback.png'
+    const [imgSrc, setImgSrc] = useState(image)
+    
     return(
         <>
         
@@ -20,7 +26,13 @@ export default function HotProduct ({image, hot, title, price, category, slug}: 
         <div className= {styles.container} title= {title}>
 
             <div className= {styles.imageWrapper}>
-                <Image src={image} alt='id' fill />
+                <Image
+                    src={imgSrc}
+                    alt={title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                    onError={() => setImgSrc(fallbackImage)}
+                />
             </div>
 
             <div className= {styles.body}>

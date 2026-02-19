@@ -31,6 +31,7 @@ export default function ProductDetails() {
   const { slug } = useParams()
   const [product, setProduct] = useState<Product | null>(null)
   const [mainImage, setMainImage] = useState<string>('')
+  const fallbackImage = '/fallback.png';
 
   useEffect(() => {
     async function fetchProduct() {
@@ -54,6 +55,7 @@ export default function ProductDetails() {
 
   if (!product) return <div className={styles.spinner}></div>
 
+
   return (
     <>
       <div className={styles.container}>
@@ -61,9 +63,17 @@ export default function ProductDetails() {
           <div className={styles.images}>
             <div className={styles.mainImage}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${mainImage}`}
+                src={
+                  mainImage
+                    ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${mainImage}`
+                    : fallbackImage
+                }
                 alt={product.name}
                 fill
+                style={{ objectFit: 'cover' }}
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).src = fallbackImage;
+                }}
               />
             </div>
             <div className={styles.imageGroup}>
@@ -74,14 +84,23 @@ export default function ProductDetails() {
                   onClick={() => setMainImage(img)}
                 >
                   <Image
-                    src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${img}`}
+                    src={
+                      img
+                        ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${img}`
+                        : fallbackImage
+                    }
                     alt={`${product.name}-${index}`}
                     fill
+                    style={{ objectFit: 'cover' }}
+                    onError={(e) => {
+                      (e.currentTarget as HTMLImageElement).src = fallbackImage;
+                    }}
                   />
                 </div>
               ))}
             </div>
           </div>
+
 
           <div className={styles.body}>
             <p className={styles.category}>{product.categoryName}</p>

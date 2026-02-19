@@ -7,6 +7,7 @@
     max-width: 1200px;
     align-self: center;
     justify-self: center;
+    width: 100%;
 }
 
 .container::-webkit-scrollbar {

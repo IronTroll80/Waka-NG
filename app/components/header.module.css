@@ -136,11 +136,10 @@
 }
 
 .topItems{
-    display: none;
+    display: flex;
     justify-content: space-between;
     width: 90%;
     align-items: center;
-    max-width: 1200px;
 }
 
 .topItems span{
@@ -149,9 +148,17 @@
 
 .menuLogo ,.categories, .misc{
     margin-left: 2rem;
-    gap: 1rem;
+    gap: .3rem;
     display: flex;
     flex-direction: column;
+}
+
+.categories a{
+    color: white;
+}
+
+.misc p{
+    color: #d2d2d2;
 }
 
 
@@ -209,6 +216,11 @@
 
     .navBar{
         display: flex;
+    }
+
+    .navBar a{
+        color: white;
+        font-weight: 600;
     }
 
 }

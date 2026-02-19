@@ -11,6 +11,7 @@ type Product = {
   name: string
   price: number
   category: string
+  categoryName: string
   images: string[]
   slug: string
 }
@@ -50,7 +51,7 @@ export default function SimilarProducts({
       {products.map((product) => (
         <HotProduct
           key={product.id}
-          category={product.category}
+          category={product.categoryName || 'Uncategorized'}
           title={product.name}
           price={product.price}
           hot={false}

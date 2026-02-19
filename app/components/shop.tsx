@@ -44,7 +44,10 @@ export default function Shop({ category }: ShopProps) {
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
   const [selectedOS, setSelectedOS] = useState<string | null>(null)
   const [selectedProcessor, setSelectedProcessor] = useState<string | null>(null)
-  console.log(products)
+  const getProductImage = (slug: string) => {
+  const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${slug}.jpg`
+  return url || '/images/fallback.png'
+}
 
   // Reset when category or filters change
   useEffect(() => {
@@ -119,6 +122,22 @@ export default function Shop({ category }: ShopProps) {
         <div className={styles.alignContainer}>
           {/* DESKTOP FILTERS */}
           <div className={styles.desktopMenu}>
+
+                    <div className= {styles.priceBox}>
+                        <h3>Price</h3>
+                        <div className= {styles.minMax}>
+                            <div className= {styles.inputBox}>
+                                <span>₦</span>
+                                <input type='text'/>
+                                <p>Min</p>
+                            </div>
+                            <div className= {styles.inputBox}>
+                                <span>₦</span>
+                                <input type='text'/>
+                                <p>Max</p>
+                            </div>
+                        </div>
+                    </div>
 
             {/* BRAND */}
             <div className={styles.brandBox}>
@@ -208,7 +227,7 @@ export default function Shop({ category }: ShopProps) {
                 products.map(product => (
                     <ProductCard
                     key={product.id}
-                    image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.slug}.jpg`}
+                    image={getProductImage(product.slug)}
                     title={product.name}
                     price={product.price}
                     category={product.categoryName ?? 'Uncategorized'}
@@ -237,9 +256,104 @@ export default function Shop({ category }: ShopProps) {
       {showMenu &&
         <div className={styles.mobileMenuContainer}>
           <div className={styles.mobileMenu}>
-            <div onClick={() => setShowMenu(false)}>
+            <div className= {styles.close} onClick={()=>{setShowMenu(false)}}>
               <button><FaX/></button>
             </div>
+            
+                    <div className= {styles.priceBox}>
+                        <h3>Price</h3>
+                        <div className= {styles.minMax}>
+                            <div className= {styles.inputBox}>
+                                <span>₦</span>
+                                <input type='text'/>
+                                <p>Min</p>
+                            </div>
+                            <div className= {styles.inputBox}>
+                                <span>₦</span>
+                                <input type='text'/>
+                                <p>Max</p>
+                            </div>
+                        </div>
+                    </div>
+
+            {/* BRAND */}
+            <div className={styles.brandBox}>
+              <div className={styles.brandBoxTop}>
+                <h3>Brand</h3>
+                <p onClick={() => setShowList(!showList)}>
+                  <BsCaretDown/>
+                </p>
+              </div>
+              {showList &&
+                <div className={styles.brandBoxBody}>
+                  {['Asus','Dell','Lenovo','HP','Samsung','Toshiba','MSI','Acer'].map(brand => (
+                    <div key={brand} className={styles.checkbox}>
+                      <input
+                        type="checkbox"
+                        checked={selectedBrand === brand}
+                        onChange={() =>
+                          setSelectedBrand(selectedBrand === brand ? null : brand)
+                        }
+                      />
+                      <p>{brand}</p>
+                    </div>
+                  ))}
+                </div>
+              }
+            </div>
+
+            {/* OS */}
+            <div className={styles.brandBox}>
+              <div className={styles.brandBoxTop}>
+                <h3>Operating System</h3>
+                <p onClick={() => setShowOsList(!showOsList)}>
+                  <BsCaretDown/>
+                </p>
+              </div>
+              {showOsList &&
+                <div className={styles.brandBoxBody}>
+                  {['Windows','MacOS','Linux'].map(os => (
+                    <div key={os} className={styles.checkbox}>
+                      <input
+                        type="checkbox"
+                        checked={selectedOS === os}
+                        onChange={() =>
+                          setSelectedOS(selectedOS === os ? null : os)
+                        }
+                      />
+                      <p>{os}</p>
+                    </div>
+                  ))}
+                </div>
+              }
+            </div>
+
+            <div className={styles.brandBox}>
+              <div className={styles.brandBoxTop}>
+                <h3>Processor</h3>
+                <p onClick={() => setShowProList(!showProList)}>
+                  <BsCaretDown/>
+                </p>
+              </div>
+              {showProList &&
+                <div className={styles.brandBoxBody}>
+                  {['Core-i7','Core-i9','Core-i5'].map(cpu => (
+                    <div key={cpu} className={styles.checkbox}>
+                      <input
+                        type="checkbox"
+                        checked={selectedProcessor === cpu}
+                        onChange={() =>
+                          setSelectedProcessor(selectedProcessor === cpu ? null : cpu)
+                        }
+                      />
+                      <p>{cpu}</p>
+                    </div>
+                  ))}
+                </div>
+              }
+              
+            </div>
+             <button className= {styles.saveButton}>Save Changes</button>
           </div>
         </div>
       }

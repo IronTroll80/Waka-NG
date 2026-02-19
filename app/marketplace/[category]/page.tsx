@@ -5,6 +5,7 @@ import Footer from "../../components/footer";
 import HeroMarket from "../../components/heroMarket";
 import Shop from '../../components/shop';
 import Newsletter from '../../components/newsletter';
+import Whatsapp from '@/app/components/whatsapp';
 
 
 interface Props {
@@ -16,6 +17,7 @@ export default async function Marketplace({ params }: Props) {
 
   return (
     <SearchProvider>
+      <Whatsapp/>
       <TopPromo/>
       <Header/>
       <HeroMarket page='Marketplace'/>
