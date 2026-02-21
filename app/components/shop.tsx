@@ -5,7 +5,7 @@ import Image from 'next/image'
 import ProductCard from './productCard'
 import { BsCaretDown } from 'react-icons/bs'
 import { FaX } from 'react-icons/fa6'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useSearch } from '../context/searchContext'
 
@@ -15,7 +15,6 @@ type Product = {
   description: string
   price: number
   slug: string
-  brand?: string
   os?: string
   processor?: string
   category: string
@@ -44,10 +43,20 @@ export default function Shop({ category }: ShopProps) {
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
   const [selectedOS, setSelectedOS] = useState<string | null>(null)
   const [selectedProcessor, setSelectedProcessor] = useState<string | null>(null)
+
+  // Helper: get first word as brand
+  const getBrandFromName = (name: string) => name.split(' ')[0]
+
+  // Dynamic brand list based on products
+  const availableBrands = useMemo(
+    () => Array.from(new Set(products.map(p => getBrandFromName(p.name)))),
+    [products]
+  )
+
   const getProductImage = (slug: string) => {
-  const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${slug}.jpg`
-  return url || '/images/fallback.png'
-}
+    const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${slug}.jpg`
+    return url || '/images/fallback.png'
+  }
 
   // Reset when category or filters change
   useEffect(() => {
@@ -65,18 +74,14 @@ export default function Shop({ category }: ShopProps) {
 
       let query = supabase
         .from('products')
-        .select(
-          `id, name, description, price, slug,  category, categoryName`,
-          { count: 'exact' }
-        )
+        .select(`id, name, description, price, slug, category, categoryName`, { count: 'exact' })
         .range(from, to)
 
       // CATEGORY FILTER
       if (category) query = query.eq('categoryName', category)
-      console.log('Category filter:', category)
 
       // DATABASE FILTERS
-      if (selectedBrand) query = query.eq('brand', selectedBrand)
+      if (selectedBrand) query = query.ilike('name', `${selectedBrand}%`) // first word matches brand
       if (selectedOS) query = query.eq('os', selectedOS)
       if (selectedProcessor) query = query.eq('processor', selectedProcessor)
       if (searchTerm) query = query.ilike('name', `%${searchTerm}%`)
@@ -86,15 +91,10 @@ export default function Shop({ category }: ShopProps) {
       if (error) {
         console.error(error)
       } else {
-        if (page === 1) {
-          setProducts(data || [])
-        } else {
-          setProducts(prev => [...prev, ...(data || [])])
-        }
+        if (page === 1) setProducts(data || [])
+        else setProducts(prev => [...prev, ...(data || [])])
 
-        if (count && to + 1 >= count) {
-          setHasMore(false)
-        }
+        if (count && to + 1 >= count) setHasMore(false)
       }
 
       setLoading(false)
@@ -103,16 +103,24 @@ export default function Shop({ category }: ShopProps) {
     fetchProducts()
   }, [page, category, selectedBrand, selectedOS, selectedProcessor, searchTerm])
 
-  // Prevent body scroll when mobile menu open
+  // Disable body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = showMenu ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [showMenu])
 
+  // Dynamic banner title
+  const bannerTitle = selectedBrand || category || 'All Products'
+
   return (
     <>
-    
       <div className={styles.container}>
+        {/* CATEGORY BANNER */}
+        <div className={styles.banner}>
+          <h2>{bannerTitle}</h2>
+          <p>{products.length} product{products.length !== 1 ? 's' : ''} found</p>
+        </div>
+
         <div className={styles.topnav}>
           <div onClick={() => setShowMenu(true)}>
             <Image src="/filter.svg" alt="filter" width={30} height={30} />
@@ -122,34 +130,30 @@ export default function Shop({ category }: ShopProps) {
         <div className={styles.alignContainer}>
           {/* DESKTOP FILTERS */}
           <div className={styles.desktopMenu}>
+            <div className={styles.priceBox}>
+              <h3>Price</h3>
+              <div className={styles.minMax}>
+                <div className={styles.inputBox}>
+                  <span>₦</span>
+                  <input type='text' />
+                  <p>Min</p>
+                </div>
+                <div className={styles.inputBox}>
+                  <span>₦</span>
+                  <input type='text' />
+                  <p>Max</p>
+                </div>
+              </div>
+            </div>
 
-                    <div className= {styles.priceBox}>
-                        <h3>Price</h3>
-                        <div className= {styles.minMax}>
-                            <div className= {styles.inputBox}>
-                                <span>₦</span>
-                                <input type='text'/>
-                                <p>Min</p>
-                            </div>
-                            <div className= {styles.inputBox}>
-                                <span>₦</span>
-                                <input type='text'/>
-                                <p>Max</p>
-                            </div>
-                        </div>
-                    </div>
-
-            {/* BRAND */}
             <div className={styles.brandBox}>
               <div className={styles.brandBoxTop}>
                 <h3>Brand</h3>
-                <p onClick={() => setShowList(!showList)}>
-                  <BsCaretDown/>
-                </p>
+                <p onClick={() => setShowList(!showList)}><BsCaretDown /></p>
               </div>
               {showList &&
                 <div className={styles.brandBoxBody}>
-                  {['Asus','Dell','Lenovo','HP','Samsung','Toshiba','MSI','Acer'].map(brand => (
+                  {availableBrands.map(brand => (
                     <div key={brand} className={styles.checkbox}>
                       <input
                         type="checkbox"
@@ -165,89 +169,79 @@ export default function Shop({ category }: ShopProps) {
               }
             </div>
 
-            {/* OS */}
-            <div className={styles.brandBox}>
+            
+            {/* <div className={styles.brandBox}>
               <div className={styles.brandBoxTop}>
                 <h3>Operating System</h3>
-                <p onClick={() => setShowOsList(!showOsList)}>
-                  <BsCaretDown/>
-                </p>
+                <p onClick={() => setShowOsList(!showOsList)}><BsCaretDown /></p>
               </div>
               {showOsList &&
                 <div className={styles.brandBoxBody}>
-                  {['Windows','MacOS','Linux'].map(os => (
+                  {['Windows', 'MacOS', 'Linux'].map(os => (
                     <div key={os} className={styles.checkbox}>
                       <input
                         type="checkbox"
                         checked={selectedOS === os}
-                        onChange={() =>
-                          setSelectedOS(selectedOS === os ? null : os)
-                        }
+                        onChange={() => setSelectedOS(selectedOS === os ? null : os)}
                       />
                       <p>{os}</p>
                     </div>
                   ))}
                 </div>
               }
-            </div>
+            </div> */}
 
-            <div className={styles.brandBox}>
+            {/* <div className={styles.brandBox}>
               <div className={styles.brandBoxTop}>
                 <h3>Processor</h3>
-                <p onClick={() => setShowProList(!showProList)}>
-                  <BsCaretDown/>
-                </p>
+                <p onClick={() => setShowProList(!showProList)}><BsCaretDown /></p>
               </div>
               {showProList &&
                 <div className={styles.brandBoxBody}>
-                  {['Core-i7','Core-i9','Core-i5'].map(cpu => (
+                  {['Core-i7', 'Core-i9', 'Core-i5'].map(cpu => (
                     <div key={cpu} className={styles.checkbox}>
                       <input
                         type="checkbox"
                         checked={selectedProcessor === cpu}
-                        onChange={() =>
-                          setSelectedProcessor(selectedProcessor === cpu ? null : cpu)
-                        }
+                        onChange={() => setSelectedProcessor(selectedProcessor === cpu ? null : cpu)}
                       />
                       <p>{cpu}</p>
                     </div>
                   ))}
                 </div>
               }
-              
-            </div>
-             <button className= {styles.saveButton}>Save Changes</button>
+            </div> */}
 
+            {/* <button className={styles.saveButton}>Save Changes</button> */}
           </div>
 
-          {/* PRODUCTS */}
           <div className={styles.productPageContainer}>
             <div className={styles.productContainer}>
-                {products.length > 0 ? (
+              {products.length > 0 ? (
                 products.map(product => (
-                    <ProductCard
+                  <ProductCard
                     key={product.id}
                     image={getProductImage(product.slug)}
                     title={product.name}
                     price={product.price}
                     category={product.categoryName ?? 'Uncategorized'}
                     slug={product.slug}
-                    />
+                  />
                 ))
-                ) : (
-                !loading && <p className= {styles.noProductsFound}>No products found</p>
-                )}
-
+              ) : (
+                !loading && <p className={styles.noProductsFound}>No products found</p>
+              )}
             </div>
+
             {hasMore && (
-                <button
-                    className={styles.loadMore}
-                    onClick={() => setPage(prev => prev + 1)}
-                    disabled={loading}
-                >
-                    {loading ? <div className={styles.loadingSpinner}></div> : 'Load More'}
-                </button>
-                )}
+              <button
+                className={styles.loadMore}
+                onClick={() => setPage(prev => prev + 1)}
+                disabled={loading}
+              >
+                {loading ? <div className={styles.loadingSpinner}></div> : 'Load More'}
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -256,37 +250,34 @@ export default function Shop({ category }: ShopProps) {
       {showMenu &&
         <div className={styles.mobileMenuContainer}>
           <div className={styles.mobileMenu}>
-            <div className= {styles.close} onClick={()=>{setShowMenu(false)}}>
-              <button><FaX/></button>
+            <div className={styles.close} onClick={() => setShowMenu(false)}>
+              <button><FaX /></button>
             </div>
-            
-                    <div className= {styles.priceBox}>
-                        <h3>Price</h3>
-                        <div className= {styles.minMax}>
-                            <div className= {styles.inputBox}>
-                                <span>₦</span>
-                                <input type='text'/>
-                                <p>Min</p>
-                            </div>
-                            <div className= {styles.inputBox}>
-                                <span>₦</span>
-                                <input type='text'/>
-                                <p>Max</p>
-                            </div>
-                        </div>
-                    </div>
 
-            {/* BRAND */}
+            <div className={styles.priceBox}>
+              <h3>Price</h3>
+              <div className={styles.minMax}>
+                <div className={styles.inputBox}>
+                  <span>₦</span>
+                  <input type='text' />
+                  <p>Min</p>
+                </div>
+                <div className={styles.inputBox}>
+                  <span>₦</span>
+                  <input type='text' />
+                  <p>Max</p>
+                </div>
+              </div>
+            </div>
+
             <div className={styles.brandBox}>
               <div className={styles.brandBoxTop}>
                 <h3>Brand</h3>
-                <p onClick={() => setShowList(!showList)}>
-                  <BsCaretDown/>
-                </p>
+                <p onClick={() => setShowList(!showList)}><BsCaretDown /></p>
               </div>
               {showList &&
                 <div className={styles.brandBoxBody}>
-                  {['Asus','Dell','Lenovo','HP','Samsung','Toshiba','MSI','Acer'].map(brand => (
+                  {availableBrands.map(brand => (
                     <div key={brand} className={styles.checkbox}>
                       <input
                         type="checkbox"
@@ -303,57 +294,50 @@ export default function Shop({ category }: ShopProps) {
             </div>
 
             {/* OS */}
-            <div className={styles.brandBox}>
+            {/* <div className={styles.brandBox}>
               <div className={styles.brandBoxTop}>
                 <h3>Operating System</h3>
-                <p onClick={() => setShowOsList(!showOsList)}>
-                  <BsCaretDown/>
-                </p>
+                <p onClick={() => setShowOsList(!showOsList)}><BsCaretDown /></p>
               </div>
               {showOsList &&
                 <div className={styles.brandBoxBody}>
-                  {['Windows','MacOS','Linux'].map(os => (
+                  {['Windows', 'MacOS', 'Linux'].map(os => (
                     <div key={os} className={styles.checkbox}>
                       <input
                         type="checkbox"
                         checked={selectedOS === os}
-                        onChange={() =>
-                          setSelectedOS(selectedOS === os ? null : os)
-                        }
+                        onChange={() => setSelectedOS(selectedOS === os ? null : os)}
                       />
                       <p>{os}</p>
                     </div>
                   ))}
                 </div>
               }
-            </div>
+            </div> */}
 
-            <div className={styles.brandBox}>
+            {/* Processor */}
+            {/* <div className={styles.brandBox}>
               <div className={styles.brandBoxTop}>
                 <h3>Processor</h3>
-                <p onClick={() => setShowProList(!showProList)}>
-                  <BsCaretDown/>
-                </p>
+                <p onClick={() => setShowProList(!showProList)}><BsCaretDown /></p>
               </div>
               {showProList &&
                 <div className={styles.brandBoxBody}>
-                  {['Core-i7','Core-i9','Core-i5'].map(cpu => (
+                  {['Core-i7', 'Core-i9', 'Core-i5'].map(cpu => (
                     <div key={cpu} className={styles.checkbox}>
                       <input
                         type="checkbox"
                         checked={selectedProcessor === cpu}
-                        onChange={() =>
-                          setSelectedProcessor(selectedProcessor === cpu ? null : cpu)
-                        }
+                        onChange={() => setSelectedProcessor(selectedProcessor === cpu ? null : cpu)}
                       />
                       <p>{cpu}</p>
                     </div>
                   ))}
                 </div>
               }
-              
-            </div>
-             <button className= {styles.saveButton}>Save Changes</button>
+            </div> */}
+
+            {/* <button className={styles.saveButton}>Save Changes</button> */}
           </div>
         </div>
       }

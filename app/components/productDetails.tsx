@@ -138,9 +138,9 @@ export default function ProductDetails() {
 
             <hr className={styles.divider} />
 
-                                <div className= {styles.specifications}>
-                        <Image  src = {'/hp.svg'} alt = 'hp' width = {30} height = {30}/>
-                        <Image  src = {'/i7.svg'} alt = 'i7' width = {30} height = {30}/>
+                      <div className= {styles.specifications}>
+                          <Image  src = {'/check.svg'} alt = 'hp' width = {30} height = {30} title='In Good Condition'/>
+                          <Image  src = {'/shield.svg'} alt = 'i7' width = {30} height = {30} title='Trusted Sellers'/>
                     </div>
                 </div>
             </div>

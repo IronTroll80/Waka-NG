@@ -55,7 +55,7 @@
     display: flex;
     flex-direction: column;
     gap:0px;
-    width: 70%;
+    width: 80%;
 }
 
 .category{
@@ -126,7 +126,8 @@
 
 .specifications {
     display: flex;
-    gap: 5%;
+    gap: .5rem;
+    cursor: pointer;
 }
 
 .fullSpecs{
