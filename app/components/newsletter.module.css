@@ -1,7 +1,7 @@
 .container{
     width: 80%;
     background-image: url('/newsletter.png');
-    aspect-ratio: 1/1;
+    height: fit-content;
     justify-self: center;
     border-radius: 20px;
     background-position: 50%;
@@ -14,6 +14,7 @@
     justify-content: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    max-width: 1200px;
 }
 
 .container h3{
@@ -31,12 +32,14 @@
 
 .inputContainer{
     width: 80%;
-    aspect-ratio: 2/0.5;
+    max-width: 250px;
+    height: 50px;
     background-color: white;
     border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 5rem;
 }
 
 .inputContainer input{
@@ -65,7 +68,7 @@
     background-color: #1c1277;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1024px) {
      .container{
         aspect-ratio: 19/7;
     }
@@ -82,11 +85,6 @@
         margin-top: 0px;
     }
 
-    .inputContainer{
-    width: 25%;
-    height: 45px;
-    margin-bottom: 1rem;
-}
 
     .inputContainer input{
         width: 70%;
