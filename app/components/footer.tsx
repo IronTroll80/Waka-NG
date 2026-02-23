@@ -23,12 +23,12 @@ export default function Footer (){
                 <Link className = {styles.link} href={'/settings'}><p>Settings</p></Link>
             </div>
             <div className= {styles.pages}>
-                <Link className = {styles.link} href={'/marketplace'}><p>Phones</p></Link>
-                <Link className = {styles.link} href={'/marketplace'}><p>Laptops</p></Link>
-                <Link className = {styles.link} href={'/marketplace'}><p>Tablets</p></Link>
-                <Link className = {styles.link} href={'/marketplace'}><p>Accesories</p></Link>
-                <Link className = {styles.link} href={'/marketplace'}><p>Music Equipment</p></Link>
-                <Link className = {styles.link} href={'/marketplace'}><p>Gadgets</p></Link>
+                <Link className = {styles.link} href={'/marketplace/phones'}><p>Phones</p></Link>
+                <Link className = {styles.link} href={'/marketplace/smartwatches'}><p>SmartWatches</p></Link>
+                <Link className = {styles.link} href={'/marketplace/tablets'}><p>Tablets</p></Link>
+                <Link className = {styles.link} href={'/marketplace/accessories'}><p>Accesories</p></Link>
+                <Link className = {styles.link} href={'/marketplace/speakers'}><p>Speakers</p></Link>
+                <Link className = {styles.link} href={'/marketplace/powerbanks'}><p>Powerbanks</p></Link>
             </div>
             <div className= {styles.newsletter}>
                 <p>Register for our Newsletter</p>

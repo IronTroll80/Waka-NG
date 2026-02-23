@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import styles from './hotProduct.module.css'
-import { MdShoppingCartCheckout } from 'react-icons/md'
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -27,7 +26,7 @@ export default function HotProduct ({image, hot, title, price, category, slug}: 
 
             <div className= {styles.imageWrapper}>
                 <Image
-                    src={imgSrc}
+                    src={image}
                     alt={title}
                     fill
                     style={{ objectFit: 'cover' }}

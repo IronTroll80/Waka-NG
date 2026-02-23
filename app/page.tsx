@@ -18,13 +18,13 @@ export default function Home() {
       <Header/>
       <Whatsapp/>
       <Hero/>
-      <TitleArea title="Our Top Categories" subtitle="Lorem Ipsum dolor sit amet consecteur"/>
+      <TitleArea title="Our Top Categories" subtitle="Check Out Our Top Selling Categories"/>
       <BentoCategories/>
-      <TitleArea title="Best Selling Items" subtitle="Lorem Ipsum dolor sit amet consecteur"/>
+      <TitleArea title="Best Selling Items" subtitle="Our Bestsellers in the Last Month"/>
       <HomeProductGroup/>
-      <TitleArea title="Our Services" subtitle="Lorem Ipsum dolor sit amet consecteur adipiscing elit"/>
+      <TitleArea title="Our Services" subtitle="Some Services we offer"/>
       <ServicesTab/>
-      <TitleArea title="New Arrival Deals" subtitle="Lorem Ipsum dolor sit amet consecteur adipiscing elit"/>
+      <TitleArea title="New Arrival Deals" subtitle="Latest Promo Offers"/>
       <DiscountDeals/>
       <Newsletter/>
       <Brands/>

@@ -9,7 +9,6 @@ import { supabase } from '../utils/supabaseClient'
 import styles from './productDetails.module.css'
 import { BsCart } from 'react-icons/bs'
 import TitleArea from './titleArea'
-import HomeProductGroup from './homeProductGroup'
 import SimilarProducts from './similarProducts'
 
 type Product = {
@@ -32,6 +31,10 @@ export default function ProductDetails() {
   const [product, setProduct] = useState<Product | null>(null)
   const [mainImage, setMainImage] = useState<string>('')
   const fallbackImage = '/fallback.png';
+    const getProductImage = (slug: string) => {
+    const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${slug}.jpg`
+    return url || '/images/fallback.png'
+  }
 
   useEffect(() => {
     async function fetchProduct() {
@@ -54,6 +57,7 @@ export default function ProductDetails() {
   }, [slug])
 
   if (!product) return <div className={styles.spinner}></div>
+  console.log( `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.slug}.jpg`)
 
 
   return (
@@ -63,11 +67,9 @@ export default function ProductDetails() {
           <div className={styles.images}>
             <div className={styles.mainImage}>
               <Image
-                src={
-                  mainImage
-                    ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${mainImage}`
-                    : fallbackImage
-                }
+                src=
+                    {`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.slug}.jpg`}
+                 
                 alt={product.name}
                 fill
                 style={{ objectFit: 'cover' }}
@@ -76,7 +78,7 @@ export default function ProductDetails() {
                 }}
               />
             </div>
-            <div className={styles.imageGroup}>
+            {/* <div className={styles.imageGroup}>
               {product.images?.map((img, index) => (
                 <div
                   key={index}
@@ -86,7 +88,7 @@ export default function ProductDetails() {
                   <Image
                     src={
                       img
-                        ? `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${img}`
+                        ? getProductImage(product.slug)
                         : fallbackImage
                     }
                     alt={`${product.name}-${index}`}
@@ -98,7 +100,7 @@ export default function ProductDetails() {
                   />
                 </div>
               ))}
-            </div>
+            </div> */}
           </div>
 
 
@@ -127,8 +129,7 @@ export default function ProductDetails() {
               target="_blank"
               rel="noopener noreferrer"
               className={styles.toCart}
-            >
-              <BsCart /> Purchase
+            >Purchase
               <div className={styles.whatsapp}>
                 <Image src={'/whatsapp.svg'} alt='Whatsapp' fill />
               </div>

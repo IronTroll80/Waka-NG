@@ -1,29 +1,40 @@
 .container {
     display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+}
+
+.content{
+    display: flex;
     gap: 1rem;
     padding: 1rem;
     flex-direction: column;
-    flex: 0 0 100%;
+    width: 80%;
     max-width: 1200px;
-    align-self: center;
-    justify-self: center;
+    flex: 0 0 100%;
 }
 
-.container::-webkit-scrollbar {
+.content::-webkit-scrollbar {
     display: none;
 }
 
-.container {
+.content{
     scrollbar-width: none;
 }
 
-.container > * {
+.content > * {
     scroll-snap-align: start;
 }
 
 /* Tablet */
 @media (min-width: 768px) {
-    .container {
+
+    .container{
+        padding: 1rem;
+    }
+
+    .content {
         padding-left: 10%;
         padding-right: 10%;
         flex-wrap: wrap;
@@ -33,14 +44,15 @@
         flex-direction: row;
     }
 
-    .container > * {
+    .content > * {
         flex: 0 0 calc(33.333% - 1rem);
     }
 }
 
 /* Desktop — 5 per row */
 @media (min-width: 1200px) {
-    .container > * {
+    .content > * {
         flex: 0 0 calc(20% - 1rem);
+        flex-wrap: wrap;
     }
 }

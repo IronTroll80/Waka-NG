@@ -55,7 +55,7 @@ export default function SimilarProducts({
           title={product.name}
           price={product.price}
           hot={false}
-          image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.images?.[0]}`}
+          image={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${product.slug}.jpg`}
           slug={product.slug}
         />
       ))}
