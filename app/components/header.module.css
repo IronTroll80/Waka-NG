@@ -31,12 +31,15 @@
     outline: none;
 }
 
-.search span{
+.search button{
     position: absolute;
     font-size: 20px;
     margin-top: 10px;
-    margin-left: -30px;
-    color: var(--main-color)
+    margin-left: -40px;
+    color: var(--main-color);
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .menuButton{

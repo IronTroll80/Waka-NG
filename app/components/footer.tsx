@@ -31,10 +31,16 @@ export default function Footer (){
                 <Link className = {styles.link} href={'/marketplace/powerbanks'}><p>Powerbanks</p></Link>
             </div>
             <div className= {styles.newsletter}>
-                <p>Register for our Newsletter</p>
+                <p>Join Our Whatsapp Updates Group</p>
 
-                <input type='email' placeholder='Email'/><br/>
-                <button> Sign Up </button>
+                <input type='text' placeholder='Phone Number'/><br/>
+                 <Link href={`https://wa.me/2348133896617?text=${encodeURIComponent(
+                                    `Hi Waka NG, I wish to join the updates group.`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                ><button>
+                        Sign up</button></Link>
             </div>
         </div>
         </>

@@ -36,10 +36,10 @@
 
 
 .phones {background-image: url('/phones.jpg'); }
-.headphones {  background-image: url('/headphones.jpg'); }
+.powerbanks {  background-image: url('/powerbanks.jpg'); }
 .accessories {background-image: url('/accessories.jpg'); }
 .music {background-image: url('/music.jpg'); }
-.laptops {background-image: url('/laptops.jpg'); }
+.smartwatches {background-image: url('/smartwatches.jpg'); }
 .tablets {background-image: url('/tablets.jpg'); }
 
 .overlay {
@@ -113,7 +113,7 @@
     aspect-ratio: 1 / 1;
   }
 
-  .headphones {
+  .powerbanks {
     grid-column: span 2;
     aspect-ratio: 2 / 1;
   }
@@ -128,7 +128,7 @@
     aspect-ratio: 2 / 1;
   }
 
-  .laptops {
+  .smartwatches {
     grid-column: span 2;
     grid-row: span 2;
     aspect-ratio: 1 / 1;
@@ -165,7 +165,7 @@
     aspect-ratio: 1 / 1;
   }
 
-  .headphones {
+  .powerbanks {
     grid-column: span 2;
     aspect-ratio: 1 / 1;
   }
@@ -180,7 +180,7 @@
     aspect-ratio: 1 / 1;
   }
 
-  .laptops {
+  .smartwatches {
     grid-column: span 2;
     aspect-ratio: 1 / 1;
   }
@@ -201,7 +201,7 @@
     aspect-ratio: 1 / 1;
   }
 
-  .headphones {
+  .powerbanks {
     grid-column: span 2;
     aspect-ratio: 2 / 1;
   }
@@ -216,7 +216,7 @@
     aspect-ratio: 2 / 1;
   }
 
-  .laptops {
+  .smartwatches {
     grid-column: span 2;
     grid-row: span 2;
     aspect-ratio: 1 / 1;

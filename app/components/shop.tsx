@@ -8,6 +8,8 @@ import { FaX } from 'react-icons/fa6'
 import { useEffect, useState, useMemo } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useSearch } from '../context/searchContext'
+import { useSearchParams } from 'next/navigation'
+
 
 type Product = {
   id: string
@@ -25,7 +27,7 @@ interface ShopProps {
   category?: string
 }
 
-const PAGE_SIZE = 8
+const PAGE_SIZE = 24
 
 export default function Shop({ category }: ShopProps) {
   const { searchTerm } = useSearch()

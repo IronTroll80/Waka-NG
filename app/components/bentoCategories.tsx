@@ -33,14 +33,14 @@ export default function BentoCategories (){
   </div>  </Link>
 </div>
 
-<div className={`${styles.card} ${styles.headphones}`}>
-  <Link href="/marketplace/headphones" className={styles.cardLink}>
+<div className={`${styles.card} ${styles.powerbanks}`}>
+  <Link href="/marketplace/powerbanks" className={styles.cardLink}>
   <div
     className={styles.overlay}
     onMouseOver={() => setShowButtonHead(true)}
     onMouseOut={() => setShowButtonHead(false)}
   >
-    <h3>HEADPHONES</h3>
+    <h3>POWERBANKS</h3>
     <button className={showButtonHead ? styles.active : styles.inactive}>
       {showButtonHead && `Shop`}
     </button>
@@ -61,14 +61,14 @@ export default function BentoCategories (){
   </div>  </Link>
 </div>
 
-<div className={`${styles.card} ${styles.laptops}`}>
-  <Link href="/marketplace/laptops" className={styles.cardLink}>
+<div className={`${styles.card} ${styles.smartwatches}`}>
+  <Link href="/marketplace/smartwatches" className={styles.cardLink}>
   <div
     className={styles.overlay}
     onMouseOver={() => setShowButtonLap(true)}
     onMouseOut={() => setShowButtonLap(false)}
   >
-    <h3>LAPTOPS</h3>
+    <h3>SMART WATCHES</h3>
     <button className={showButtonLap ? styles.active : styles.inactive}>
       {showButtonLap && `Shop`}
     </button>
@@ -76,13 +76,13 @@ export default function BentoCategories (){
 </div>
 
 <div className={`${styles.card} ${styles.music}`}>
-  <Link href="/marketplace/music" className={styles.cardLink}>
+  <Link href="/marketplace/speakers" className={styles.cardLink}>
     <div
         className={styles.overlay}
         onMouseOver={() => setShowButtonMusic(true)}
         onMouseOut={() => setShowButtonMusic(false)}
     >
-        <h3>MUSIC EQUIPMENT</h3>
+        <h3>SPEAKERS</h3>
         <button className={showButtonMusic ? styles.active : styles.inactive}>
         {showButtonMusic && `Shop`}
         </button>

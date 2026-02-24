@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import styles from './newsletter.module.css'
+import Link from 'next/link'
 
 export default function Newsletter (){
     return(
@@ -7,10 +8,16 @@ export default function Newsletter (){
         
         <div className= {styles.container}>
                 <h3>Want The <br/>Latest Updates?</h3>
-                <p>Lorem ipsum dolor sit amet consecteur adipiscing elit</p>
+                <p>Join Our whatsapp Group </p>
                 <div className= {styles.inputContainer}>
-                    <input type='text' placeholder='Email'/>
-                    <button>Send</button>
+                    <input type='text' placeholder='Phone Number'/>
+                    <Link href={`https://wa.me/2348133896617?text=${encodeURIComponent(
+                                    `Hi Waka NG, I wish to join the updates group.`
+                                  )}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                ><button>
+                        Send</button></Link>
                 </div>
                 
         </div>

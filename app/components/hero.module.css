@@ -23,7 +23,7 @@
     display: flex;
     text-align: center;
     flex-direction: row;
-    max-width: 900px;
+    max-width: 1200px;
 }
 
 .left{
@@ -95,29 +95,30 @@
     }
    
     .content{
-        max-width: 900px;
+        max-width: 1200px;
+        padding: 2rem;
     }
 
     .left h3{
     font-size: 50px;
-     width: 60%;
+    width: 70%;
     text-align: left;
     }
 
     .left p{
      margin-top: -30px;
-     font-size: 20px;
-     width: 60%;
+     font-size: 14px;
+     width: 80%;
      text-align: left;
     }
 
     .buttonGroup{ 
-        width: 30%;
+        width: 100%;
         display: flex;
         align-items: flex-start;
         justify-content: flex-start;
-        padding-left: 15px;
         gap: 1rem;
+        margin-top: 1rem;
     }
 
     .left button{
