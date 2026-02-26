@@ -1,65 +1,67 @@
+/* MOBILE-FIRST STYLES */
 .container {
   width: 100%;
-  padding: 5rem 8%;
+  padding: 3rem 5%;
   box-sizing: border-box;
+  background: #f8f9fb;
 }
 
 .content {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: 4rem;
-  flex-wrap: wrap;
-  max-width: 1300px;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 1200px;
   margin: 0 auto;
-  background-color: #f8f9fb;
-  padding: 3rem;
-  box-sizing: border-box;
 }
 
 .text {
-  flex: 1;
-  min-width: 280px;
+  width: 100%;
 }
 
 .badge {
   display: inline-block;
   background: #e8f0ff;
   color: var(--main-color);
-  padding: 0.4rem 0.9rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 2rem;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .text h2 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .text p {
   color: #555;
-  margin-bottom: 2rem;
-  max-width: 500px;
+  margin-bottom: 1.5rem;
+  max-width: 100%;
 }
 
 .buttons {
   display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.primaryBtn,
+.secondaryBtn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.3s ease;
 }
 
 .primaryBtn {
   background: var(--main-color);
   color: white;
-  padding: 0.8rem 1.8rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s ease;
 }
 
 .primaryBtn:hover {
@@ -69,12 +71,7 @@
 .secondaryBtn {
   background: white;
   color: var(--main-color);
-  padding: 0.8rem 1.8rem;
-  border-radius: 0.5rem;
-  text-decoration: none;
-  font-weight: 600;
   border: 2px solid var(--main-color);
-  transition: 0.3s ease;
 }
 
 .secondaryBtn:hover {
@@ -84,29 +81,87 @@
 
 /* Right Card */
 .card {
-  flex: 1;
-  min-width: 260px;
+  width: 80%;
   background: white;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  margin: 0 auto;
 }
 
 .card h4 {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.25rem;
 }
 
 .card ul {
-  padding-left: 1.2rem;
+  padding-left: 1rem;
 }
 
 .card li {
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
+/* TABLET & DESKTOP */
 @media (min-width: 768px) {
+  .container {
+    padding: 4rem 8%;
+  }
+
   .content {
     flex-direction: row;
+    justify-content: space-between;
     align-items: center;
+    gap: 4rem;
+  }
+
+  .text {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .text h2 {
+    font-size: 2rem;
+  }
+
+  .text p {
+    max-width: 500px;
+    margin-bottom: 2rem;
+  }
+
+  .buttons {
+    flex-direction: row;
+    gap: 1rem;
+    width: auto;
+  }
+
+  .card {
+    flex: 1;
+    min-width: 260px;
+    padding: 2rem;
+  }
+
+  .card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* LARGE SCREENS */
+@media (min-width: 1200px) {
+  .container {
+    padding: 5rem 12%;
+  }
+
+  .card {
+    padding: 2.5rem;
+  }
+
+  .text h2 {
+    font-size: 2.2rem;
+  }
+
+  .card h4 {
+    font-size: 1.75rem;
   }
 }
