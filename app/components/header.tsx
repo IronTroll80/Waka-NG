@@ -93,10 +93,11 @@ export default function Header() {
           <hr />
 
           <div className={styles.misc}>
+            <Link href = '/services'><p className= {styles.finServices}>Financial Services</p></Link>
             <h5>Coming Soon <FaChevronDown /></h5>
-            <p>Manage your account</p>
-            <p>Your Cart</p>
-            <p>Settings</p>
+            <p className= {styles.miscItem}>Manage your account</p>
+            <p className= {styles.miscItem}>Your Cart</p>
+            <p className= {styles.miscItem}>Settings</p>
           </div>
         </div>
       </div>

@@ -160,10 +160,14 @@
     color: white;
 }
 
-.misc p{
+
+.miscItem{
     color: #d2d2d2;
 }
 
+.finServices{
+    color: #fff;
+}
 
 .dropdown{
     padding: 2rem;
@@ -201,6 +205,8 @@
 }
 
 @media (min-width: 768px) {
+
+    
     .menuButton {
         display: none;
     }
