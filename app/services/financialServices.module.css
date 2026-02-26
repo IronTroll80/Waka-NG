@@ -14,13 +14,13 @@
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 24px;
   color: var(--main-color);
   margin-bottom: 1rem;
 }
 
 .hero p {
-  font-size: 1.1rem;
+  font-size: 16px;
   color: #555;
   margin-bottom: 2rem;
 }
@@ -64,7 +64,7 @@
 .services h2 {
   margin-bottom: 3rem;
   color: var(--main-color);
-  font-size: 2rem;
+  font-size: 20px;
 }
 
 .cardGrid {
@@ -97,7 +97,7 @@
 
 .setup h2 {
   margin-bottom: 3rem;
-  font-size: 2rem;
+  font-size: 20px;
   color: var(--main-color);
 }
 
