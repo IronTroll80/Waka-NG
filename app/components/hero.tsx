@@ -16,7 +16,7 @@ export default function Hero(){
                         <p>The assignment. The business. The content. The late-night grind. At Waka NG, we don’t just sell gadgets — we support journeys. Yours included.</p>
                         <div className= {styles.buttonGroup}>
                             <button  className= {styles.primary}><Link href={'/marketplace'} className= {styles.link}>Shop Now </Link></button>
-                            <button className= {styles.secondary}>Explore Services</button>
+                            <button className= {styles.secondary}><Link href={'/services'} className= {styles.link}>Explore Services </Link></button>
                         </div>
                     </div>
 

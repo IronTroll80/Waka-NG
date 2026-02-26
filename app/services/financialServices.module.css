@@ -1,0 +1,142 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 4rem 8%;
+  box-sizing: border-box;
+}
+
+.hero {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 2rem;
+}
+
+
+.primaryBtn {
+  background: var(--main-color);
+  color: white;
+  padding: 0.9rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.primaryBtn:hover {
+  background: #072c6b;
+}
+
+.secondaryBtn {
+  background: white;
+  color: var(--main-color);
+  padding: 0.9rem 2rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid var(--main-color);
+  transition: 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background: var(--main-color);
+  color: white;
+}
+
+/* SERVICES */
+.services {
+  text-align: center;
+}
+
+.services h2 {
+  margin-bottom: 3rem;
+  color: var(--main-color);
+  font-size: 2rem;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  text-align: left;
+  background: white;
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  margin-bottom: 1rem;
+}
+
+/* SETUP */
+.setup {
+  text-align: center;
+}
+
+.setup h2 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+  color: var(--main-color);
+}
+
+.setupGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.setupCard {
+  padding: 2rem;
+  border-radius: 1rem;
+  background: #f8f9fb;
+  text-align: left;
+}
+
+.setupCard ul {
+  margin-top: 1rem;
+  padding-left: 1.2rem;
+}
+
+.setupCard li {
+  margin-bottom: 0.6rem;
+}
+
+.cta {
+  text-align: center;
+  padding: 4rem 2rem;
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #0a3d91, var(--main-color), #1b5edb);
+  color: white;
+}
+
+.cta h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+.cta p {
+  margin-bottom: 2rem;
+}

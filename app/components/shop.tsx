@@ -8,8 +8,6 @@ import { FaX } from 'react-icons/fa6'
 import { useEffect, useState, useMemo } from 'react'
 import { supabase } from '../utils/supabaseClient'
 import { useSearch } from '../context/searchContext'
-import { useSearchParams } from 'next/navigation'
-
 
 type Product = {
   id: string
@@ -39,17 +37,13 @@ export default function Shop({ category }: ShopProps) {
 
   const [showMenu, setShowMenu] = useState(false)
   const [showList, setShowList] = useState(true)
-  const [showOsList, setShowOsList] = useState(true)
-  const [showProList, setShowProList] = useState(true)
 
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
-  const [selectedOS, setSelectedOS] = useState<string | null>(null)
-  const [selectedProcessor, setSelectedProcessor] = useState<string | null>(null)
+  const [minPrice, setMinPrice] = useState(0)
+  const [maxPrice, setMaxPrice] = useState(300000)
 
-  // Helper: get first word as brand
   const getBrandFromName = (name: string) => name.split(' ')[0]
 
-  // Dynamic brand list based on products
   const availableBrands = useMemo(
     () => Array.from(new Set(products.map(p => getBrandFromName(p.name)))),
     [products]
@@ -60,12 +54,11 @@ export default function Shop({ category }: ShopProps) {
     return url || '/images/fallback.png'
   }
 
-  // Reset when category or filters change
   useEffect(() => {
     setPage(1)
     setProducts([])
     setHasMore(true)
-  }, [category, selectedBrand, selectedOS, selectedProcessor, searchTerm])
+  }, [category, selectedBrand, searchTerm])
 
   useEffect(() => {
     async function fetchProducts() {
@@ -79,23 +72,18 @@ export default function Shop({ category }: ShopProps) {
         .select(`id, name, description, price, slug, category, categoryName`, { count: 'exact' })
         .range(from, to)
 
-      // CATEGORY FILTER
       if (category) query = query.eq('categoryName', category)
-
-      // DATABASE FILTERS
-      if (selectedBrand) query = query.ilike('name', `${selectedBrand}%`) // first word matches brand
-      if (selectedOS) query = query.eq('os', selectedOS)
-      if (selectedProcessor) query = query.eq('processor', selectedProcessor)
+      if (selectedBrand) query = query.ilike('name', `${selectedBrand}%`)
       if (searchTerm) query = query.ilike('name', `%${searchTerm}%`)
+      if (minPrice !== null) query = query.gte('price', minPrice)
+      if (maxPrice !== null) query = query.lte('price', maxPrice)
 
       const { data, error, count } = await query
 
-      if (error) {
-        console.error(error)
-      } else {
+      if (error) console.error(error)
+      else {
         if (page === 1) setProducts(data || [])
         else setProducts(prev => [...prev, ...(data || [])])
-
         if (count && to + 1 >= count) setHasMore(false)
       }
 
@@ -103,21 +91,32 @@ export default function Shop({ category }: ShopProps) {
     }
 
     fetchProducts()
-  }, [page, category, selectedBrand, selectedOS, selectedProcessor, searchTerm])
+  }, [page, category, selectedBrand, minPrice, maxPrice, searchTerm])
 
-  // Disable body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = showMenu ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [showMenu])
 
-  // Dynamic banner title
   const bannerTitle = selectedBrand || category || 'All Products'
+
+  useEffect(() => {
+    setPage(1)
+    setProducts([])
+    setHasMore(true)
+  }, [category, selectedBrand, searchTerm, minPrice, maxPrice])
+
+  useEffect(() => {
+    if (minPrice !== null && maxPrice !== null && minPrice > maxPrice) {
+      setMaxPrice(minPrice)
+    }
+  }, [minPrice])
+
+  console.log({ minPrice, maxPrice, products })
 
   return (
     <>
       <div className={styles.container}>
-        {/* CATEGORY BANNER */}
         <div className={styles.banner}>
           <h2>{bannerTitle}</h2>
           <p>{products.length} product{products.length !== 1 ? 's' : ''} found</p>
@@ -130,20 +129,29 @@ export default function Shop({ category }: ShopProps) {
         </div>
 
         <div className={styles.alignContainer}>
-          {/* DESKTOP FILTERS */}
           <div className={styles.desktopMenu}>
             <div className={styles.priceBox}>
               <h3>Price</h3>
-              <div className={styles.minMax}>
-                <div className={styles.inputBox}>
-                  <span>₦</span>
-                  <input type='text' />
-                  <p>Min</p>
-                </div>
-                <div className={styles.inputBox}>
-                  <span>₦</span>
-                  <input type='text' />
-                  <p>Max</p>
+              <div className={styles.sliderBox}>
+                <input
+                  type="range"
+                  min="0"
+                  max="300000"
+                  step="10000"
+                  value={minPrice ?? 0}
+                  onChange={(e) => setMinPrice(Number(e.target.value))}
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="300000"
+                  step="10000"
+                  value={maxPrice ?? 300000}
+                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                />
+                <div className={styles.priceDisplay}>
+                  <p>₦{(minPrice ?? 0).toLocaleString()}</p>
+                  <p>₦{(maxPrice ?? 2000000).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -170,51 +178,6 @@ export default function Shop({ category }: ShopProps) {
                 </div>
               }
             </div>
-
-            
-            {/* <div className={styles.brandBox}>
-              <div className={styles.brandBoxTop}>
-                <h3>Operating System</h3>
-                <p onClick={() => setShowOsList(!showOsList)}><BsCaretDown /></p>
-              </div>
-              {showOsList &&
-                <div className={styles.brandBoxBody}>
-                  {['Windows', 'MacOS', 'Linux'].map(os => (
-                    <div key={os} className={styles.checkbox}>
-                      <input
-                        type="checkbox"
-                        checked={selectedOS === os}
-                        onChange={() => setSelectedOS(selectedOS === os ? null : os)}
-                      />
-                      <p>{os}</p>
-                    </div>
-                  ))}
-                </div>
-              }
-            </div> */}
-
-            {/* <div className={styles.brandBox}>
-              <div className={styles.brandBoxTop}>
-                <h3>Processor</h3>
-                <p onClick={() => setShowProList(!showProList)}><BsCaretDown /></p>
-              </div>
-              {showProList &&
-                <div className={styles.brandBoxBody}>
-                  {['Core-i7', 'Core-i9', 'Core-i5'].map(cpu => (
-                    <div key={cpu} className={styles.checkbox}>
-                      <input
-                        type="checkbox"
-                        checked={selectedProcessor === cpu}
-                        onChange={() => setSelectedProcessor(selectedProcessor === cpu ? null : cpu)}
-                      />
-                      <p>{cpu}</p>
-                    </div>
-                  ))}
-                </div>
-              }
-            </div> */}
-
-            {/* <button className={styles.saveButton}>Save Changes</button> */}
           </div>
 
           <div className={styles.productPageContainer}>
@@ -248,7 +211,6 @@ export default function Shop({ category }: ShopProps) {
         </div>
       </div>
 
-      {/* MOBILE MENU */}
       {showMenu &&
         <div className={styles.mobileMenuContainer}>
           <div className={styles.mobileMenu}>
@@ -258,16 +220,26 @@ export default function Shop({ category }: ShopProps) {
 
             <div className={styles.priceBox}>
               <h3>Price</h3>
-              <div className={styles.minMax}>
-                <div className={styles.inputBox}>
-                  <span>₦</span>
-                  <input type='text' />
-                  <p>Min</p>
-                </div>
-                <div className={styles.inputBox}>
-                  <span>₦</span>
-                  <input type='text' />
-                  <p>Max</p>
+              <div className={styles.sliderBox}>
+                <input
+                  type="range"
+                  min="0"
+                  max="300000"
+                  step="10000"
+                  value={minPrice ?? 0}
+                  onChange={(e) => setMinPrice(Number(e.target.value))}
+                />
+                <input
+                  type="range"
+                  min="0"
+                  max="300000"
+                  step="10000"
+                  value={maxPrice ?? 300000}
+                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                />
+                <div className={styles.priceDisplay}>
+                  <p>₦{(minPrice ?? 0).toLocaleString()}</p>
+                  <p>₦{(maxPrice ?? 2000000).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -294,52 +266,6 @@ export default function Shop({ category }: ShopProps) {
                 </div>
               }
             </div>
-
-            {/* OS */}
-            {/* <div className={styles.brandBox}>
-              <div className={styles.brandBoxTop}>
-                <h3>Operating System</h3>
-                <p onClick={() => setShowOsList(!showOsList)}><BsCaretDown /></p>
-              </div>
-              {showOsList &&
-                <div className={styles.brandBoxBody}>
-                  {['Windows', 'MacOS', 'Linux'].map(os => (
-                    <div key={os} className={styles.checkbox}>
-                      <input
-                        type="checkbox"
-                        checked={selectedOS === os}
-                        onChange={() => setSelectedOS(selectedOS === os ? null : os)}
-                      />
-                      <p>{os}</p>
-                    </div>
-                  ))}
-                </div>
-              }
-            </div> */}
-
-            {/* Processor */}
-            {/* <div className={styles.brandBox}>
-              <div className={styles.brandBoxTop}>
-                <h3>Processor</h3>
-                <p onClick={() => setShowProList(!showProList)}><BsCaretDown /></p>
-              </div>
-              {showProList &&
-                <div className={styles.brandBoxBody}>
-                  {['Core-i7', 'Core-i9', 'Core-i5'].map(cpu => (
-                    <div key={cpu} className={styles.checkbox}>
-                      <input
-                        type="checkbox"
-                        checked={selectedProcessor === cpu}
-                        onChange={() => setSelectedProcessor(selectedProcessor === cpu ? null : cpu)}
-                      />
-                      <p>{cpu}</p>
-                    </div>
-                  ))}
-                </div>
-              }
-            </div> */}
-
-            {/* <button className={styles.saveButton}>Save Changes</button> */}
           </div>
         </div>
       }

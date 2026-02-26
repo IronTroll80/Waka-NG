@@ -1,156 +1,112 @@
-/* .container{
-    width: 100%;
-    height: 40px;
-    background-color: var(--accent-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+
+.container {
+  width: 100%;
+  height: 40px;
+  background-color: var(--accent-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
 }
 
-.container i{
-    font-weight: bold;
-    text-decoration: underline;
-    cursor: pointer;
+.container p {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.modal{
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.425);
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
+.linkButton {
+  background: none;
+  border: none;
+  font-weight: bold;
+  text-decoration: underline;
+  cursor: pointer;
+  color: inherit;
+  font-size: inherit;
+  padding: 0;
 }
 
-.modalContent{
-    width: 40%;
-    aspect-ratio: 1/1;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+.modal {
+  inset: 0;
+  position: fixed;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.425);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
-.modalContent p {
-    width: 85%;
-    text-align: right;
-    font-size: 20px;
-    color: var(--main-color);
+.modalContent {
+  width: 80%;
+  max-width: 400px;
+  aspect-ratio: 1/1.5;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
 }
 
-.imageWrapper{
-    width: 55%;
-    aspect-ratio: 1/1;
-    position: relative;
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--main-color);
 }
 
-.modalContent h4{
-    font-size: 30px;
-    color: var(--main-color);
-    margin-bottom: 5px;
+.imageWrapper {
+  width: 55%;
+  aspect-ratio: 1/1;
+  position: relative;
+  margin-bottom: 1rem;
 }
 
-.modalContent i {
-    color: var(--main-color);
+.modalContent h4 {
+  font-size: 1.8rem;
+  color: var(--main-color);
+  margin-bottom: 0.5rem;
 }
 
-.modalContent button{
-    width: 40%;
-    padding: .8rem;
-    margin-top: 1rem;
-    border-radius: 10px;
-    border: none;
-    font-weight: 600;
-    color: white;
-    background-color: var(--main-color);
-    cursor: pointer;
-} */
-
-.container{
-    width: 100%;
-    height: 40px;
-    background-color: var(--accent-color);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
+.subText {
+  color: var(--main-color);
+  font-style: italic;
+  margin-bottom: 1rem;
 }
 
-.container i{
-    font-weight: bold;
-    text-decoration: underline;
-    cursor: pointer;
+.comeBack {
+  width: 70%;
+  min-width: fit-content;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  background-color: var(--main-color);
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
-.modal{
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.425);
-    position: absolute;
-    z-index: 1;
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
-}
-
-.modalContent{
-    width: 80%;
-    aspect-ratio: 1/1.5;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.modalContent p {
-    width: 85%;
-    text-align: right;
-    font-size: 20px;
-    color: var(--main-color);
-}
-
-.imageWrapper{
-    width: 55%;
-    aspect-ratio: 1/1;
-    position: relative;
-}
-
-.modalContent h4{
-    font-size: 30px;
-    color: var(--main-color);
-    margin-bottom: 5px;
-}
-
-.modalContent i {
-    color: var(--main-color);
-}
-
-.modalContent button{
-    width: 70%;
-    padding: .8rem;
-    margin-top: 1rem;
-    border-radius: 10px;
-    border: none;
-    font-weight: 600;
-    color: white;
-    background-color: var(--main-color);
-    cursor: pointer;
+.comeBack:hover {
+  background-color: #072c6b; 
 }
 
 @media (min-width: 768px) {
-    .modalContent{
-        aspect-ratio: 1/1;
-        width: 40%;
-    }
+  .modalContent {
+    width: 40%;
+    aspect-ratio: 1/1;
+  }
 
-    .modalContent button{
-        width: 40%;
-    }
+  .comeBack {
+    width: 40%;
+  }
 }

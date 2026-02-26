@@ -3,21 +3,12 @@
 import { useState } from 'react'
 import styles from './legalContent.module.css'
 
-type ContentKeys = 'warranty' | 'privacy' | 'terms'
+type ContentKeys =  | 'privacy' | 'terms'
 
 export default function LegalContent() {
-  const [activeButton, setActiveButton] = useState<ContentKeys>('warranty')
+  const [activeButton, setActiveButton] = useState<ContentKeys>('privacy')
 
   const content = {
-    warranty: {
-      heading: 'Warranty & Return Policy',
-      paragraph: `
-        At Waka NG, we provide a 12-month warranty on all laptops, phones, and accessories sold through our platform. 
-        If your product develops a manufacturing fault within this period, we will repair or replace it free of charge. 
-        Returns are accepted within 7 days of purchase, provided the item is unused and in original packaging. 
-        To initiate a warranty or return request, please contact our support team via the Waka NG Help Center.
-      `,
-    },
     privacy: {
       heading: 'Privacy Policy',
       paragraph: `
@@ -41,12 +32,6 @@ export default function LegalContent() {
     <div className={styles.container}>
       {/* Top Buttons */}
       <div className={styles.topButtons}>
-        <button
-          className={activeButton === 'warranty' ? styles.active : styles.inactive}
-          onClick={() => setActiveButton('warranty')}
-        >
-          Warranty
-        </button>
         <button
           className={activeButton === 'privacy' ? styles.active : styles.inactive}
           onClick={() => setActiveButton('privacy')}

@@ -1,0 +1,112 @@
+.container {
+  width: 100%;
+  padding: 5rem 8%;
+  box-sizing: border-box;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4rem;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  margin: 0 auto;
+  background-color: #f8f9fb;
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+.text {
+  flex: 1;
+  min-width: 280px;
+}
+
+.badge {
+  display: inline-block;
+  background: #e8f0ff;
+  color: var(--main-color);
+  padding: 0.4rem 0.9rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.text h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.text p {
+  color: #555;
+  margin-bottom: 2rem;
+  max-width: 500px;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  background: var(--main-color);
+  color: white;
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+
+.primaryBtn:hover {
+  background: #072c6b;
+}
+
+.secondaryBtn {
+  background: white;
+  color: var(--main-color);
+  padding: 0.8rem 1.8rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid var(--main-color);
+  transition: 0.3s ease;
+}
+
+.secondaryBtn:hover {
+  background: var(--main-color);
+  color: white;
+}
+
+/* Right Card */
+.card {
+  flex: 1;
+  min-width: 260px;
+  background: white;
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.card h4 {
+  margin-bottom: 1rem;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+}
+
+.card li {
+  margin-bottom: 0.6rem;
+}
+
+@media (min-width: 768px) {
+  .content {
+    flex-direction: row;
+    align-items: center;
+  }
+}

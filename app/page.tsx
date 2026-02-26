@@ -10,6 +10,7 @@ import DiscountDeals from "./components/discountDeals";
 import Newsletter from "./components/newsletter";
 import Brands from "./components/brands";
 import Whatsapp from "./components/whatsapp";
+import FinServices from "./components/finServices";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
       <ServicesTab/>
       <TitleArea title="New Arrival Deals" subtitle="Latest Promo Offers"/>
       <DiscountDeals/>
+      <FinServices/>
       <Newsletter/>
       <Brands/>
       <Footer/>
