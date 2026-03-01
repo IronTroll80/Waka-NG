@@ -262,36 +262,38 @@ export default function AdminProducts() {
           placeholder="Search products..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          style={{ padding: '0.5rem', width: '300px' }}
+          className= {styles.search}
         />
       </div>
 
       {loading ? <p>Loading...</p> : (
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Image</th>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Category</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredProducts.map(p => (
-              <tr key={p.id}>
-                <td>{p.imageUrl ? <img src={p.imageUrl} alt={p.name} className={styles.productImage} /> : 'No image'}</td>
-                <td>{p.name}</td>
-                <td>{p.price}</td>
-                <td>{p.categoryName}</td>
-                <td className={styles.actions}>
-                  <button onClick={() => openModal(p)}>Edit</button>
-                  <button onClick={() => handleDelete(p)}>Delete</button>
-                </td>
+        <div className= {styles.tableWrapper}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredProducts.map(p => (
+                <tr key={p.id}>
+                  <td>{p.imageUrl ? <img src={p.imageUrl} alt={p.name} className={styles.productImage} /> : 'No image'}</td>
+                  <td>{p.name}</td>
+                  <td>{p.price}</td>
+                  <td>{p.categoryName}</td>
+                  <td className={styles.actions}>
+                    <button onClick={() => openModal(p)}>Edit</button>
+                    <button onClick={() => handleDelete(p)}>Delete</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       {modalOpen && (
