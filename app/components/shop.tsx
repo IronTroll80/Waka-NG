@@ -39,8 +39,10 @@ export default function Shop({ category }: ShopProps) {
   const [showList, setShowList] = useState(true)
 
   const [selectedBrand, setSelectedBrand] = useState<string | null>(null)
-  const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState(300000)
+
+  const [priceCap, setPriceCap] = useState<number>(0)
+  const [minPrice, setMinPrice] = useState<number>(0)
+  const [maxPrice, setMaxPrice] = useState<number | null>(null)
 
   const getBrandFromName = (name: string) => name.split(' ')[0]
 
@@ -50,16 +52,46 @@ export default function Shop({ category }: ShopProps) {
   )
 
   const getProductImage = (slug: string) => {
-    const url = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${slug}.jpg`
-    return url || '/images/fallback.png'
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL) return '/images/fallback.png'
+    return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product_images/${slug}.jpg`
   }
 
+  // Reset pagination when filters change
   useEffect(() => {
     setPage(1)
     setProducts([])
     setHasMore(true)
+  }, [category, selectedBrand, searchTerm, minPrice, maxPrice])
+
+  // Fetch highest price dynamically based on filters (except price)
+  useEffect(() => {
+    async function fetchHighestPrice() {
+      let query = supabase
+        .from('products')
+        .select('price')
+        .order('price', { ascending: false })
+        .limit(1)
+
+      if (category) query = query.eq('categoryName', category)
+      if (selectedBrand) query = query.ilike('name', `${selectedBrand}%`)
+      if (searchTerm) query = query.ilike('name', `%${searchTerm}%`)
+
+      const { data, error } = await query
+
+      if (!error && data && data.length > 0) {
+        const highest = data[0].price
+        setPriceCap(highest)
+        setMaxPrice(highest)
+      } else {
+        setPriceCap(0)
+        setMaxPrice(0)
+      }
+    }
+
+    fetchHighestPrice()
   }, [category, selectedBrand, searchTerm])
 
+  // Fetch products
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true)
@@ -80,39 +112,37 @@ export default function Shop({ category }: ShopProps) {
 
       const { data, error, count } = await query
 
-      if (error) console.error(error)
-      else {
+      if (error) {
+        console.error(error)
+      } else {
         if (page === 1) setProducts(data || [])
         else setProducts(prev => [...prev, ...(data || [])])
-        if (count && to + 1 >= count) setHasMore(false)
+
+        if (count !== null && to + 1 >= count) setHasMore(false)
       }
 
       setLoading(false)
     }
 
-    fetchProducts()
+    if (maxPrice !== null) fetchProducts()
   }, [page, category, selectedBrand, minPrice, maxPrice, searchTerm])
 
+  // Prevent body scroll when mobile filter open
   useEffect(() => {
     document.body.style.overflow = showMenu ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [showMenu])
 
-  const bannerTitle = selectedBrand || category || 'All Products'
-
+  // Prevent min > max
   useEffect(() => {
-    setPage(1)
-    setProducts([])
-    setHasMore(true)
-  }, [category, selectedBrand, searchTerm, minPrice, maxPrice])
-
-  useEffect(() => {
-    if (minPrice !== null && maxPrice !== null && minPrice > maxPrice) {
+    if (maxPrice !== null && minPrice > maxPrice) {
       setMaxPrice(minPrice)
     }
   }, [minPrice])
 
-  console.log({ minPrice, maxPrice, products })
+  const bannerTitle = selectedBrand || category || 'All Products'
 
   return (
     <>
@@ -129,6 +159,7 @@ export default function Shop({ category }: ShopProps) {
         </div>
 
         <div className={styles.alignContainer}>
+          {/* Desktop Filter */}
           <div className={styles.desktopMenu}>
             <div className={styles.priceBox}>
               <h3>Price</h3>
@@ -136,22 +167,22 @@ export default function Shop({ category }: ShopProps) {
                 <input
                   type="range"
                   min="0"
-                  max="300000"
+                  max={priceCap}
                   step="10000"
-                  value={minPrice ?? 0}
+                  value={minPrice}
                   onChange={(e) => setMinPrice(Number(e.target.value))}
                 />
                 <input
                   type="range"
                   min="0"
-                  max="300000"
+                  max={priceCap}
                   step="10000"
-                  value={maxPrice ?? 300000}
+                  value={maxPrice ?? priceCap}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
                 />
                 <div className={styles.priceDisplay}>
-                  <p>₦{(minPrice ?? 0).toLocaleString()}</p>
-                  <p>₦{(maxPrice ?? 2000000).toLocaleString()}</p>
+                  <p>₦{minPrice.toLocaleString()}</p>
+                  <p>₦{(maxPrice ?? priceCap).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -161,7 +192,8 @@ export default function Shop({ category }: ShopProps) {
                 <h3>Brand</h3>
                 <p onClick={() => setShowList(!showList)}><BsCaretDown /></p>
               </div>
-              {showList &&
+
+              {showList && (
                 <div className={styles.brandBoxBody}>
                   {availableBrands.map(brand => (
                     <div key={brand} className={styles.checkbox}>
@@ -176,10 +208,11 @@ export default function Shop({ category }: ShopProps) {
                     </div>
                   ))}
                 </div>
-              }
+              )}
             </div>
           </div>
 
+          {/* Products */}
           <div className={styles.productPageContainer}>
             <div className={styles.productContainer}>
               {products.length > 0 ? (
@@ -194,7 +227,11 @@ export default function Shop({ category }: ShopProps) {
                   />
                 ))
               ) : (
-                !loading && <p className={styles.noProductsFound}>No products found</p>
+                !loading && (
+                  <p className={styles.noProductsFound}>
+                    No products found
+                  </p>
+                )
               )}
             </div>
 
@@ -204,14 +241,19 @@ export default function Shop({ category }: ShopProps) {
                 onClick={() => setPage(prev => prev + 1)}
                 disabled={loading}
               >
-                {loading ? <div className={styles.loadingSpinner}></div> : 'Load More'}
+                {loading ? (
+                  <div className={styles.loadingSpinner}></div>
+                ) : (
+                  'Load More'
+                )}
               </button>
             )}
           </div>
         </div>
       </div>
 
-      {showMenu &&
+      {/* Mobile Filter */}
+      {showMenu && (
         <div className={styles.mobileMenuContainer}>
           <div className={styles.mobileMenu}>
             <div className={styles.close} onClick={() => setShowMenu(false)}>
@@ -224,22 +266,22 @@ export default function Shop({ category }: ShopProps) {
                 <input
                   type="range"
                   min="0"
-                  max="300000"
+                  max={priceCap}
                   step="10000"
-                  value={minPrice ?? 0}
+                  value={minPrice}
                   onChange={(e) => setMinPrice(Number(e.target.value))}
                 />
                 <input
                   type="range"
                   min="0"
-                  max="300000"
+                  max={priceCap}
                   step="10000"
-                  value={maxPrice ?? 300000}
+                  value={maxPrice ?? priceCap}
                   onChange={(e) => setMaxPrice(Number(e.target.value))}
                 />
                 <div className={styles.priceDisplay}>
-                  <p>₦{(minPrice ?? 0).toLocaleString()}</p>
-                  <p>₦{(maxPrice ?? 2000000).toLocaleString()}</p>
+                  <p>₦{minPrice.toLocaleString()}</p>
+                  <p>₦{(maxPrice ?? priceCap).toLocaleString()}</p>
                 </div>
               </div>
             </div>
@@ -249,7 +291,8 @@ export default function Shop({ category }: ShopProps) {
                 <h3>Brand</h3>
                 <p onClick={() => setShowList(!showList)}><BsCaretDown /></p>
               </div>
-              {showList &&
+
+              {showList && (
                 <div className={styles.brandBoxBody}>
                   {availableBrands.map(brand => (
                     <div key={brand} className={styles.checkbox}>
@@ -264,11 +307,11 @@ export default function Shop({ category }: ShopProps) {
                     </div>
                   ))}
                 </div>
-              }
+              )}
             </div>
           </div>
         </div>
-      }
+      )}
     </>
   )
 }

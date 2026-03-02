@@ -26,15 +26,17 @@ export default function AdminProducts() {
   const [loading, setLoading] = useState(true)
   const [modalOpen, setModalOpen] = useState(false)
   const [editingProduct, setEditingProduct] = useState<Product | null>(null)
-  const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    price: '',
-    category: '',
-    categoryName: '',
-    specs: '',
-    notes: ''
-  })
+const [formData, setFormData] = useState({
+  name: '',
+  description: '',
+  price: '',
+  category: '',
+  categoryName: '',
+  notes: ''
+})
+const [specs, setSpecs] = useState<{ key: string; value: string }[]>([
+  { key: '', value: '' }
+])
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [uploadingImage, setUploadingImage] = useState(false)
   const [categories, setCategories] = useState<{id: string, name: string}[]>([])
@@ -119,34 +121,52 @@ export default function AdminProducts() {
     p.categoryName.toLowerCase().includes(search.toLowerCase())
   )
 
-  // Open modal function
-  function openModal(product?: Product) {
-    if (product) {
-      setEditingProduct(product)
-      setFormData({
-        name: product.name,
-        description: product.description,
-        price: product.price,
-        category: product.category,
-        categoryName: product.categoryName,
-        specs: '',
-        notes: product.notes
-      })
+
+function openModal(product?: Product) {
+  if (product) {
+    setEditingProduct(product)
+
+    setFormData({
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      category: product.category,
+      categoryName: product.categoryName,
+      notes: product.notes
+    })
+
+    if (product.specs) {
+      const specsObj =
+        typeof product.specs === 'string'
+          ? JSON.parse(product.specs)
+          : product.specs
+
+      const specArray = Object.entries(specsObj).map(([key, value]) => ({
+        key,
+        value: String(value)
+      }))
+
+      setSpecs(specArray.length ? specArray : [{ key: '', value: '' }])
     } else {
-      setEditingProduct(null)
-      setFormData({
-        name: '',
-        description: '',
-        price: '',
-        category: '',
-        categoryName: '',
-        specs: '',
-        notes: ''
-      })
-      setImageFile(null)
+      setSpecs([{ key: '', value: '' }])
     }
-    setModalOpen(true)
+
+  } else {
+    setEditingProduct(null)
+    setFormData({
+      name: '',
+      description: '',
+      price: '',
+      category: '',
+      categoryName: '',
+      notes: ''
+    })
+    setSpecs([{ key: '', value: '' }])
+    setImageFile(null)
   }
+
+  setModalOpen(true)
+}
 
   // Handle form changes
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
@@ -161,12 +181,36 @@ export default function AdminProducts() {
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
     }
+    
   }
+function handleSpecChange(
+        index: number,
+        field: 'key' | 'value',
+        value: string
+      ) {
+        const updated = [...specs]
+        updated[index][field] = value
+        setSpecs(updated)
+      }
 
+      function addSpecField() {
+        setSpecs([...specs, { key: '', value: '' }])
+      }
+
+      function removeSpecField(index: number) {
+        const updated = specs.filter((_, i) => i !== index)
+        setSpecs(updated.length ? updated : [{ key: '', value: '' }])
+      }
   // Handle submit (add/update)
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     setUploadingImage(true)
+    const formattedSpecs = specs.reduce((acc: any, spec) => {
+        if (spec.key.trim() !== '') {
+          acc[spec.key.trim()] = spec.value
+        }
+        return acc
+      }, {})
     try {
       const slug = generateSlug(formData.name)
       let productId = editingProduct?.id
@@ -181,7 +225,7 @@ export default function AdminProducts() {
             category: formData.category,
             categoryName: formData.categoryName,
             slug,
-            specs: JSON.parse(formData.specs),
+            specs: formattedSpecs,
             notes: formData.notes
           })
           .eq('id', editingProduct.id)
@@ -196,7 +240,7 @@ export default function AdminProducts() {
             category: formData.category,
             categoryName: formData.categoryName,
             slug,
-            specs: JSON.parse(formData.specs),
+            specs: formattedSpecs,
             notes: formData.notes
           }])
           .select('id')
@@ -309,7 +353,49 @@ export default function AdminProducts() {
                 <option key={c.id} value={c.id}>{c.name}</option>
               ))}
             </select>
-            <input type="text" name="specs" placeholder='Specs JSON e.g. {"condition":"new"}' value={formData.specs} onChange={handleChange} required />
+              <div className={styles.specsContainer}>
+                <label>Specifications</label>
+
+                {specs.map((spec, index) => (
+                  <div key={index} className={styles.specRow}>
+                    <input
+                      type="text"
+                      placeholder="Spec Name (e.g. condition)"
+                      value={spec.key}
+                      onChange={(e) =>
+                        handleSpecChange(index, 'key', e.target.value)
+                      }
+                      required
+                    />
+
+                    <input
+                      type="text"
+                      placeholder="Spec Value (e.g. new)"
+                      value={spec.value}
+                      onChange={(e) =>
+                        handleSpecChange(index, 'value', e.target.value)
+                      }
+                      required
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => removeSpecField(index)}
+                      className={styles.removeSpecButton}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={addSpecField}
+                  className={styles.addSpecButton}
+                >
+                  + Add Spec
+                </button>
+              </div>
             <textarea name="notes" placeholder="Notes" value={formData.notes} onChange={handleChange} />
             <input type="file" accept=".jpg" onChange={e => e.target.files && setImageFile(e.target.files[0])} />
             <div className={styles.modalButtons}>
