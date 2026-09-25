@@ -5,9 +5,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export default function ServicesModal(){
+export default function ServicesModal() {
 
-    const [showModal, setShowModal] = useState(true)
+    const [showModal, setShowModal] = useState(false)
+
+    useEffect(() => {
+        const hasVisited = localStorage.getItem('waka-services-modal')
+
+        if (!hasVisited) {
+            setShowModal(true)
+            localStorage.setItem('waka-services-modal', 'true')
+        }
+    }, [])
 
     useEffect(() => {
         if (showModal) {

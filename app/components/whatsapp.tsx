@@ -6,10 +6,6 @@ import { ChatBubbleQuestion } from "iconoir-react/solid"
 export default function Whatsapp() {
   const [show, setShow] = useState(false)
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 1000)
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="fixed bottom-5 right-5 z-[999] flex flex-col items-end">
@@ -53,13 +49,14 @@ export default function Whatsapp() {
 
       {!show && (
         <div
-          className="cursor-pointer transition-transform duration-200 hover:scale-110"
+          className="flex gap-2 cursor-pointer transition-transform duration-200 bg-[var(--foreground)] hover:scale-110 py-2 px-2 rounded-md"
           onClick={() => setShow(true)}
         >
           <ChatBubbleQuestion
-            color="var(--waka-blue)"
-            fontSize={32}
-          />
+            color="var(--background)"
+            fontSize={16}
+          /> 
+         <p className="font-[14px] text-[var(--background)]">Help</p> 
         </div>
       )}
     </div>

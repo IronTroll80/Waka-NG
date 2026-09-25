@@ -26,8 +26,7 @@ export default function Shop({products}: Props) {
     const [minPrice, setMinPrice] = useState(MIN_PRICE)
     const [maxPrice, setMaxPrice] = useState(MAX_PRICE)
     const [currentPage, setCurrentPage] = useState(1)
-    const [showFilters, setShowFilters] = useState(false)
-    const [showSort, setShowSort] = useState(false)
+    const [mobilePanel, setMobilePanel] = useState<'filters' | 'sort' | null>(null)
 
     useEffect(() => {
         setCategory(urlCategory || 'All')
@@ -52,7 +51,6 @@ export default function Shop({products}: Props) {
 
         const byPrice = bySearch.filter((product) => {
             const price = Number(product.price)
-
             return price >= minPrice && price <= maxPrice
         })
 
@@ -120,10 +118,212 @@ export default function Shop({products}: Props) {
         setMinPrice(MIN_PRICE)
         setMaxPrice(MAX_PRICE)
         setCurrentPage(1)
+        setMobilePanel(null)
     }
+
+    const renderSortPanel = () => (
+        <div className='flex flex-col gap-4'>
+            <button
+                type='button'
+                onClick={() => {
+                    setSort('name')
+                    setMobilePanel(null)
+                }}
+                className={`text-left text-sm ${
+                    sort === 'name'
+                        ? 'font-semibold text-[var(--foreground)]'
+                        : 'text-[var(--text-accent)]'
+                }`}
+            >
+                Name: A - Z
+            </button>
+
+            <button
+                type='button'
+                onClick={() => {
+                    setSort('low')
+                    setMobilePanel(null)
+                }}
+                className={`text-left text-sm ${
+                    sort === 'low'
+                        ? 'font-semibold text-[var(--foreground)]'
+                        : 'text-[var(--text-accent)]'
+                }`}
+            >
+                Price: Low to High
+            </button>
+
+            <button
+                type='button'
+                onClick={() => {
+                    setSort('high')
+                    setMobilePanel(null)
+                }}
+                className={`text-left text-sm ${
+                    sort === 'high'
+                        ? 'font-semibold text-[var(--foreground)]'
+                        : 'text-[var(--text-accent)]'
+                }`}
+            >
+                Price: High to Low
+            </button>
+
+            <button
+                type='button'
+                onClick={() => {
+                    setSort('')
+                    setMobilePanel(null)
+                }}
+                className='mt-2 text-left text-sm text-[var(--text-accent)]'
+            >
+                Clear sort
+            </button>
+        </div>
+    )
+
+    const renderFiltersPanel = () => (
+        <div className='flex flex-col gap-6'>
+            <div>
+                <h4 className='text-sm font-semibold text-[var(--foreground)]'>
+                    Category
+                </h4>
+
+                <div className='mt-4 flex flex-wrap gap-3'>
+                    <button
+                        type='button'
+                        onClick={() => {
+                            setCategory('All')
+                            setMobilePanel(null)
+                        }}
+                        className={`border px-3 py-2 text-sm ${
+                            category === 'All'
+                                ? 'border-[var(--foreground)] bg-[var(--foreground)] text-[var(--background)]'
+                                : 'border-[var(--border-color)] text-[var(--foreground)]'
+                        }`}
+                    >
+                        All
+                    </button>
+
+                    {categories.slice(0, 5).map((item) => (
+                        <button
+                            key={item.title}
+                            type='button'
+                            onClick={() => {
+                                setCategory(item.title)
+                                setMobilePanel(null)
+                            }}
+                            className={`border px-3 py-2 text-sm ${
+                                category === item.title
+                                    ? 'border-[var(--foreground)] bg-[var(--foreground)] text-[var(--background)]'
+                                    : 'border-[var(--border-color)] text-[var(--foreground)]'
+                            }`}
+                        >
+                            {item.title}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div>
+                <h4 className='text-sm font-semibold text-[var(--foreground)]'>
+                    Price
+                </h4>
+
+                <div className='mt-4 grid grid-cols-2 gap-3'>
+                    <div>
+                        <label className='mb-2 block text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-accent)]'>
+                            Min
+                        </label>
+
+                        <input
+                            type='number'
+                            min={MIN_PRICE}
+                            max={MAX_PRICE}
+                            value={minPrice}
+                            onChange={(event) =>
+                                handleMinPriceChange(event.target.value)
+                            }
+                            className='w-full border border-[var(--border-color)] bg-transparent px-3 py-2 text-sm text-[var(--foreground)] outline-none'
+                        />
+                    </div>
+
+                    <div>
+                        <label className='mb-2 block text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-accent)]'>
+                            Max
+                        </label>
+
+                        <input
+                            type='number'
+                            min={MIN_PRICE}
+                            max={MAX_PRICE}
+                            value={maxPrice}
+                            onChange={(event) =>
+                                handleMaxPriceChange(event.target.value)
+                            }
+                            className='w-full border border-[var(--border-color)] bg-transparent px-3 py-2 text-sm text-[var(--foreground)] outline-none'
+                        />
+                    </div>
+                </div>
+
+                <input
+                    type='range'
+                    min={MIN_PRICE}
+                    max={MAX_PRICE}
+                    value={maxPrice}
+                    onChange={(event) =>
+                        handleMaxPriceChange(event.target.value)
+                    }
+                    className='mt-5 w-full accent-[var(--foreground)]'
+                />
+            </div>
+
+            <button
+                type='button'
+                onClick={resetFilters}
+                className='border border-[var(--border-color)] px-4 py-2 text-sm text-[var(--foreground)]'
+            >
+                Clear filters
+            </button>
+        </div>
+    )
+
+    const isMobileDrawerOpen = mobilePanel !== null
 
     return (
         <div className='mx-auto w-full max-w-[1200px] px-4 py-[96px] max-md:px-5 max-md:py-[64px] max-sm:px-4 max-sm:py-[48px]'>
+
+            {isMobileDrawerOpen && (
+                <div
+                    className={`fixed inset-0 z-[120] bg-black/30 transition-opacity duration-300 md:hidden ${
+                        isMobileDrawerOpen ? 'opacity-100' : 'opacity-0'
+                    }`}
+                    onClick={() => setMobilePanel(null)}
+                />
+            )}
+
+            <aside
+                className={`fixed right-0 top-0 z-[13000000] h-full w-[82vw] max-w-[320px] border-l border-[var(--border-color)] bg-[var(--background)] p-5 shadow-2xl transition-transform duration-300 ease-out md:hidden ${
+                    isMobileDrawerOpen
+                        ? 'translate-x-0 opacity-100'
+                        : 'translate-x-full opacity-0'
+                }`}
+            >
+                <div className='mb-6 flex items-center justify-between'>
+                    <h3 className='text-lg font-semibold text-[var(--foreground)]'>
+                        {mobilePanel === 'filters' ? 'Filters' : 'Sort'}
+                    </h3>
+
+                    <button
+                        type='button'
+                        onClick={() => setMobilePanel(null)}
+                        className='text-sm text-[var(--text-accent)]'
+                    >
+                        Close
+                    </button>
+                </div>
+
+                {mobilePanel === 'filters' ? renderFiltersPanel() : renderSortPanel()}
+            </aside>
 
             <div className='mb-[48px] px-4 max-md:mb-[36px] max-md:px-0 max-sm:mb-[28px]'>
                 <h1 className='text-[48px] font-[700] capitalize max-md:text-[38px] max-md:leading-[46px] max-sm:text-[28px] max-sm:leading-[36px]'>
@@ -290,10 +490,7 @@ export default function Shop({products}: Props) {
                     <div className='mb-6 hidden items-center justify-between max-md:flex'>
                         <button
                             type='button'
-                            onClick={() => {
-                                setShowFilters(!showFilters)
-                                setShowSort(false)
-                            }}
+                            onClick={() => setMobilePanel('filters')}
                             className='text-sm font-semibold text-[var(--foreground)]'
                         >
                             Filters
@@ -301,161 +498,12 @@ export default function Shop({products}: Props) {
 
                         <button
                             type='button'
-                            onClick={() => {
-                                setShowSort(!showSort)
-                                setShowFilters(false)
-                            }}
+                            onClick={() => setMobilePanel('sort')}
                             className='text-sm font-semibold text-[var(--foreground)]'
                         >
                             Sort
                         </button>
                     </div>
-
-                    {showFilters && (
-                        <div className='mb-6 border border-[var(--border-color)] p-4 md:hidden'>
-                            <h4 className='text-sm font-semibold text-[var(--foreground)]'>
-                                Category
-                            </h4>
-
-                            <div className='mt-4 flex flex-wrap gap-3'>
-                                <button
-                                    type='button'
-                                    onClick={() => setCategory('All')}
-                                    className={`border px-3 py-2 text-sm ${
-                                        category === 'All'
-                                            ? 'border-[var(--foreground)] bg-[var(--foreground)] text-[var(--background)]'
-                                            : 'border-[var(--border-color)] text-[var(--foreground)]'
-                                    }`}
-                                >
-                                    All
-                                </button>
-
-                                {categories.slice(0, 5).map((item) => (
-                                    <button
-                                        key={item.title}
-                                        type='button'
-                                        onClick={() => setCategory(item.title)}
-                                        className={`border px-3 py-2 text-sm ${
-                                            category === item.title
-                                                ? 'border-[var(--foreground)] bg-[var(--foreground)] text-[var(--background)]'
-                                                : 'border-[var(--border-color)] text-[var(--foreground)]'
-                                        }`}
-                                    >
-                                        {item.title}
-                                    </button>
-                                ))}
-                            </div>
-
-                            <div className='mt-6'>
-                                <h4 className='text-sm font-semibold text-[var(--foreground)]'>
-                                    Price
-                                </h4>
-
-                                <div className='mt-4 grid grid-cols-2 gap-3'>
-                                    <div>
-                                        <label className='mb-2 block text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-accent)]'>
-                                            Min
-                                        </label>
-
-                                        <input
-                                            type='number'
-                                            min={MIN_PRICE}
-                                            max={MAX_PRICE}
-                                            value={minPrice}
-                                            onChange={(event) =>
-                                                handleMinPriceChange(event.target.value)
-                                            }
-                                            className='w-full border border-[var(--border-color)] bg-transparent px-3 py-2 text-sm text-[var(--foreground)] outline-none'
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className='mb-2 block text-[11px] font-medium uppercase tracking-[0.08em] text-[var(--text-accent)]'>
-                                            Max
-                                        </label>
-
-                                        <input
-                                            type='number'
-                                            min={MIN_PRICE}
-                                            max={MAX_PRICE}
-                                            value={maxPrice}
-                                            onChange={(event) =>
-                                                handleMaxPriceChange(event.target.value)
-                                            }
-                                            className='w-full border border-[var(--border-color)] bg-transparent px-3 py-2 text-sm text-[var(--foreground)] outline-none'
-                                        />
-                                    </div>
-                                </div>
-
-                                <input
-                                    type='range'
-                                    min={MIN_PRICE}
-                                    max={MAX_PRICE}
-                                    value={maxPrice}
-                                    onChange={(event) =>
-                                        handleMaxPriceChange(event.target.value)
-                                    }
-                                    className='mt-5 w-full accent-[var(--foreground)]'
-                                />
-                            </div>
-
-                            <button
-                                type='button'
-                                onClick={resetFilters}
-                                className='mt-5 border border-[var(--border-color)] px-4 py-2 text-sm text-[var(--foreground)]'
-                            >
-                                Clear filters
-                            </button>
-                        </div>
-                    )}
-
-                    {showSort && (
-                        <div className='mb-6 flex flex-col gap-3 border border-[var(--border-color)] p-4 md:hidden'>
-                            <button
-                                type='button'
-                                onClick={() => setSort('name')}
-                                className={`text-left text-sm ${
-                                    sort === 'name'
-                                        ? 'font-semibold text-[var(--foreground)]'
-                                        : 'text-[var(--text-accent)]'
-                                }`}
-                            >
-                                Name: A - Z
-                            </button>
-
-                            <button
-                                type='button'
-                                onClick={() => setSort('low')}
-                                className={`text-left text-sm ${
-                                    sort === 'low'
-                                        ? 'font-semibold text-[var(--foreground)]'
-                                        : 'text-[var(--text-accent)]'
-                                }`}
-                            >
-                                Price: Low to High
-                            </button>
-
-                            <button
-                                type='button'
-                                onClick={() => setSort('high')}
-                                className={`text-left text-sm ${
-                                    sort === 'high'
-                                        ? 'font-semibold text-[var(--foreground)]'
-                                        : 'text-[var(--text-accent)]'
-                                }`}
-                            >
-                                Price: High to Low
-                            </button>
-
-                            <button
-                                type='button'
-                                onClick={() => setSort('')}
-                                className='mt-2 text-left text-sm text-[var(--text-accent)]'
-                            >
-                                Clear sort
-                            </button>
-                        </div>
-                    )}
 
                     <div className='min-h-[320px] w-full'>
                         {visibleProducts.length > 0 ? (
