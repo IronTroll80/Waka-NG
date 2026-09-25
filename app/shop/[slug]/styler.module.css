@@ -1,0 +1,385 @@
+.container {
+    display: flex;
+    margin: auto;
+    max-width: 1200px;
+    padding: 96px 40px;
+    align-items: flex-start;
+    width: 100%;
+    flex-direction: column;
+}
+
+.container .breadcrumbs {
+    display: flex;
+    letter-spacing: 2%;
+    font-size: 14px;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.productnameslug {
+    font-weight: 700;
+}
+
+.productArea {
+    display: flex;
+    max-width: 1200px;
+    min-height: fit-content;
+    margin-top: 32px;
+    width: 100%;
+    column-gap: 32px;
+}
+
+.image {
+    max-width: 556px;
+    aspect-ratio: 1;
+    width: 100%;
+    background-color: var(--light-accent);
+    padding: 48px;
+    flex-shrink: 0;
+}
+
+.imageContainer {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+}
+
+.textArea {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+}
+
+.status {
+    color: var(--waka-green);
+    background-color: var(--waka-green-light);
+    font-weight: 600;
+    padding: 4px 8px;
+    font-size: 14px;
+    width: fit-content;
+}
+
+.textArea h4 {
+    margin-top: 8px;
+    font-size: 32px;
+    text-transform: uppercase;
+    font-weight: 600;
+    max-width: 420px;
+}
+
+.textArea .category {
+    color: var(--text-accent);
+    font-size: 14px;
+    margin-top: 8px;
+}
+
+.textArea .category a {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.textArea h2 {
+    font-size: 32px;
+    margin-top: 32px;
+    font-weight: 600;
+}
+
+.qty {
+    padding: 4px 8px;
+    display: flex;
+    gap: 16px;
+    background-color: var(--light-accent);
+    margin-top: 24px;
+    font-weight: 600;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    margin-top: 32px;
+    gap: 16px;
+    color: var(--foreground);
+}
+
+.desc h5 {
+    font-weight: 700;
+}
+
+.desc p {
+    font-size: 14px;
+    line-height: 24px;
+    color: var(--text-accent);
+}
+
+.container button {
+    border: none;
+}
+
+.container button span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.container button span svg {
+    color: var(--waka-green);
+}
+
+.noCartButton {
+    background-color: var(--foreground);
+    color: var(--background);
+    padding: 16px;
+    width: 100%;
+    margin-top: 32px;
+    transition: .4s;
+}
+
+.cartButton {
+    background-color: var(--waka-green-light);
+    color: var(--waka-green);
+    padding: 16px;
+    width: 100%;
+    margin-top: 32px;
+    transition: .4s;
+}
+
+.container button:hover {
+    cursor: pointer;
+    opacity: .9;
+}
+
+.instructions {
+    margin-top: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0%;
+    color: #bb0707;
+    animation: slideDown .2s ease-in;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.similar {
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    gap: 32px;
+    width: 100%;
+}
+
+.similar h4 {
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--foreground);
+    letter-spacing: 0%;
+}
+
+.similarItems {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    height: fit-content;
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 80px 32px;
+    }
+
+    .productArea {
+        column-gap: 24px;
+    }
+
+    .image {
+        max-width: 48%;
+        padding: 32px;
+    }
+
+    .textArea {
+        padding: 8px;
+    }
+
+    .textArea h4 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .textArea h2 {
+        font-size: 28px;
+        margin-top: 24px;
+    }
+
+    .similarItems {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 64px 24px;
+    }
+
+    .breadcrumbs {
+        line-height: 22px;
+    }
+
+    .productArea {
+        flex-direction: column;
+        height: auto;
+        margin-top: 24px;
+        gap: 32px;
+    }
+
+    .image {
+        max-width: none;
+        width: 100%;
+        padding: 32px;
+    }
+
+    .textArea {
+        padding: 0;
+    }
+
+    .status {
+        font-size: 13px;
+    }
+
+    .textArea h4 {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .textArea .category {
+        font-size: 13px;
+    }
+
+    .textArea h2 {
+        font-size: 26px;
+        margin-top: 20px;
+    }
+
+    .qty {
+        margin-top: 20px;
+    }
+
+    .desc {
+        margin-top: 28px;
+        gap: 12px;
+    }
+
+    .desc p {
+        font-size: 14px;
+        line-height: 23px;
+    }
+
+    .noCartButton,
+    .cartButton {
+        margin-top: 24px;
+    }
+
+    .similar {
+        margin-top: 56px;
+        gap: 24px;
+    }
+
+    .similar h4 {
+        font-size: 22px;
+    }
+
+    .similarItems {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 12px;
+    }
+}
+
+@media (max-width: 500px) {
+    .container {
+        padding: 48px 16px;
+    }
+
+    .container .breadcrumbs {
+        font-size: 12px;
+        line-height: 20px;
+    }
+
+    .productArea {
+        margin-top: 20px;
+        gap: 28px;
+    }
+
+    .image {
+        padding: 20px;
+    }
+
+    .textArea h4 {
+        font-size: 23px;
+        line-height: 30px;
+    }
+
+    .textArea .category {
+        font-size: 12px;
+        margin-top: 6px;
+    }
+
+    .textArea h2 {
+        font-size: 23px;
+        margin-top: 18px;
+    }
+
+    .qty {
+        margin-top: 16px;
+        gap: 14px;
+        padding: 4px 8px;
+    }
+
+    .desc {
+        margin-top: 24px;
+        gap: 10px;
+    }
+
+    .desc p {
+        font-size: 13px;
+        line-height: 22px;
+    }
+
+    .noCartButton,
+    .cartButton {
+        padding: 14px;
+        margin-top: 20px;
+        font-size: 13px;
+    }
+
+    .instructions {
+        font-size: 12px;
+    }
+
+    .similar {
+        margin-top: 48px;
+        gap: 20px;
+    }
+
+    .similar h4 {
+        font-size: 19px;
+    }
+
+    .similarItems {
+        gap: 20px 10px;
+    }
+}
